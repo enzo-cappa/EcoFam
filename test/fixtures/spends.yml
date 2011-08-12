@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  titulo: MyString
+  ammount: 9.99
+  done: false
+
+two:
+  titulo: MyString
+  ammount: 9.99
+  done: false
