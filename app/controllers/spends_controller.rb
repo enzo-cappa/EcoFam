@@ -3,7 +3,7 @@ class SpendsController < ApplicationController
   # GET /spends.xml
   def index
     @spends = Spend.all
-
+    @tags = Spend.tag_counts
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @spends }
@@ -60,7 +60,7 @@ class SpendsController < ApplicationController
 
     respond_to do |format|
       if @spend.update_attributes(params[:spend])
-        format.html { redirect_to(@spend, :notice => 'Spend was successfully updated.') }
+        format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

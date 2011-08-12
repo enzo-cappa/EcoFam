@@ -13,14 +13,14 @@ development:
   encoding: unicode
   database: EcoFamily_development
   pool: 5
-  username: ecofam
-  password: ecofam
+  username: enzocappa
+  password: enzocappa
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.
-#  host: localhost
-#  port: 5432
+  host: localhost
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -39,9 +39,10 @@ test:
   encoding: unicode
   database: EcoFamily_test
   pool: 5
-  username: ecofam
-  password:
-
+  username: enzocappa
+  password: enzocappa
+  host: localhost
+  port: 5432
 production:
   adapter: postgresql
   encoding: unicode
