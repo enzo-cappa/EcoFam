@@ -2,8 +2,21 @@ class SpendsController < ApplicationController
   # GET /spends
   # GET /spends.xml
   def index
-    @spends = Spend.all
-    #@tags = Spend.tag_counts
+    if params[:period]
+      year = params[:period][:year]  
+      month = params[:period][:month]
+    end    
+
+    year = Time.now.year unless year       
+    month = Time.now.month unless month
+    
+    @period_date = DateTime.new(year.to_i, month.to_i, 1)
+    
+    @spends = Spend.at_month @period_date
+    #@tags = Spend.tag_counts    
+    
+    @sum = @spends.already_done.sum(:ammount)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @spends }

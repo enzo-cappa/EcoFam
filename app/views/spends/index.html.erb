@@ -1,3 +1,7 @@
+<%= form_tag spends_path, :method => 'get' do %>
+<%= select_date @period_date, :prefix => :period, :order => [:month, :year]  %><br/>
+<%= submit_tag "Cambiar" %>
+<% end %>
 <table class="cuscosky">
   <caption>Lista de gastos</caption>
   <thead>
@@ -17,7 +21,7 @@
       <tr <%= raw('class="odd"') if i%2 == 1 %> >
 	<td><%= spend.date %></td>
 	<td><%= spend.titulo %></td>
-	<td><%= spend.ammount %></td>
+	<td><%= number_to_currency(spend.ammount, :unit => "$") %></td>
 	<td><%= spend.done %></td>
 	<td><%= spend.tag_list %></td>
 	<td><%= link_to 'Show', spend %></td>
@@ -28,8 +32,8 @@
   </tbody>
   <tfoot>
     <tr>
-      <td colspan="2" >Total</td>
-      <td><%= Spend.total %>
+      <td colspan="2" >Monto final</td>
+      <td><%= number_to_currency(@sum, :unit => "$") %>
       <td/>
       <td/>
       <td/>
