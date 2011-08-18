@@ -1,43 +1,44 @@
-<h1>Lista de gastos</h1>
-
-<table>
-  <tr>
-    <th>Fecha</th>
-    <th>Titulo</th>
-    <th>Monto</th>
-    <th>¿Hecho?</th>
-    <th>Marcas</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @spends.each do |spend| %>
-  <tr>
-    <td><%= spend.date %></td>
-    <td><%= spend.titulo %></td>
-    <td><%= spend.ammount %></td>
-    <td><%= spend.done %></td>
-    <td><%= spend.tag_list %></td>
-    <td><%= link_to 'Show', spend %></td>
-    <td><%= link_to 'Edit', edit_spend_path(spend) %></td>
-    <td><%= link_to 'Destroy', spend, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-  <tr>
-    <td/>
-    <td/>
-    <td/>
-    <td/>
-    <td/>
-    <td>Total:</td>
-    <td><%=Spend.total%>
-  </tr>
+<table class="cuscosky">
+  <caption>Lista de gastos</caption>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Titulo</th>
+      <th>Monto</th>
+      <th>¿Hecho?</th>
+      <th>Marcas</th>
+      <th></th>
+      <th></th>
+      <th/>
+    </tr>
+  </thead>
+  <tbody>
+    <% @spends.each_with_index do |spend, i| %>
+      <tr <%= raw('class="odd"') if i%2 == 1 %> >
+	<td><%= spend.date %></td>
+	<td><%= spend.titulo %></td>
+	<td><%= spend.ammount %></td>
+	<td><%= spend.done %></td>
+	<td><%= spend.tag_list %></td>
+	<td><%= link_to 'Show', spend %></td>
+	<td><%= link_to 'Edit', edit_spend_path(spend) %></td>
+	<td><%= link_to 'Destroy', spend, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2" >Total</td>
+      <td><%= Spend.total %>
+      <td/>
+      <td/>
+      <td/>
+      <td/>
+    </tr>
+  </tfoot>
 </table>
 
 <br />
 
 <%= link_to 'Nuevo gasto', new_spend_path %>
 
- <% tag_cloud @tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
-    <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
-  <% end %>
