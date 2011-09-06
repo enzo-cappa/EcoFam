@@ -5,16 +5,20 @@ class SpendsController < ApplicationController
     if params[:period]
       year = params[:period][:year]  
       month = params[:period][:month]
-    end    
-
+    end
+    
+    
     year = Time.now.year unless year       
     month = Time.now.month unless month
     
     @period_date = DateTime.new(year.to_i, month.to_i, 1)
     
     @spends = Spend.at_month @period_date
-    #@tags = Spend.tag_counts    
     
+    if params[:with_tag]
+       @spends = @spends.tagged_as(params[:with_tag])
+    end
+
     @sum = @spends.already_done.sum(:ammount)
     
     respond_to do |format|
@@ -54,7 +58,8 @@ class SpendsController < ApplicationController
   # POST /spends.xml
   def create
     @spend = Spend.new(params[:spend])
-
+    tags = from_tags_listing(params[:tags_listing])
+    @spend.tags << tags
     respond_to do |format|
       if @spend.save
         format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully created.') }
@@ -70,7 +75,8 @@ class SpendsController < ApplicationController
   # PUT /spends/1.xml
   def update
     @spend = Spend.find(params[:id])
-
+    tags = from_tags_listing(params[:tags_listing])
+    @spend.tags << tags
     respond_to do |format|
       if @spend.update_attributes(params[:spend])
         format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully updated.') }

@@ -1,3 +1,4 @@
+<%= link_to "Inicio" %><br/><br/>
 <%= form_tag spends_path, :method => 'get' do %>
 <%= select_date @period_date, :prefix => :period, :order => [:month, :year]  %><br/>
 <%= submit_tag "Cambiar" %>
@@ -23,7 +24,7 @@
 	<td><%= spend.titulo %></td>
 	<td><%= number_to_currency(spend.ammount, :unit => "$") %></td>
 	<td><%= spend.done %></td>
-	<td><%= spend.tag_list %></td>
+	<td><%= raw(to_tags_links_listing(spend.tags)) %></td>
 	<td><%= link_to 'Show', spend %></td>
 	<td><%= link_to 'Edit', edit_spend_path(spend) %></td>
 	<td><%= link_to 'Destroy', spend, :confirm => 'Are you sure?', :method => :delete %></td>
