@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
 
-gem 'acts_as_taggable_on_steroids', :git => 'git://github.com/tablatom/acts_as_taggable_on_steroids.git'
+gem 'can_be_tagged', :git => 'git@github.com:zherk/can_be_tagged.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
