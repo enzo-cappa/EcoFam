@@ -59,7 +59,7 @@ class SpendsController < ApplicationController
   def create
     @spend = Spend.new(params[:spend])
     tags = from_tags_listing(params[:tags_listing])
-    @spend.tags << tags
+    @spend.tags = tags
     respond_to do |format|
       if @spend.save
         format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully created.') }
@@ -76,7 +76,7 @@ class SpendsController < ApplicationController
   def update
     @spend = Spend.find(params[:id])
     tags = from_tags_listing(params[:tags_listing])
-    @spend.tags << tags
+    @spend.tags = tags
     respond_to do |format|
       if @spend.update_attributes(params[:spend])
         format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully updated.') }
