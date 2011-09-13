@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label "Marcas" %><br/>
-    <%= text_field_tag "tags_listing" %>
+    <%= text_field_tag "tags_listing", to_tags_listing(@spend.tags) %>
   </div>
   <div class="field">
     <%= f.label :done %><br />
