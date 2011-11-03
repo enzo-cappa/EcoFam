@@ -7,7 +7,7 @@ gem 'rails', '3.1.0'
 
 gem 'pg'
 
-gem 'can_be_tagged', :git => 'git@github.com:zherk/can_be_tagged.git'
+gem 'can_be_tagged', :git => 'git://github.com/zherk/can_be_tagged.git'
 
 # Use unicorn as the web server
 # gem 'unicorn'
