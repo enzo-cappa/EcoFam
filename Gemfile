@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,6 +8,8 @@ gem 'rails', '3.1.0'
 gem 'pg'
 
 gem 'can_be_tagged', :git => 'git://github.com/zherk/can_be_tagged.git'
+
+gem 'devise'
 
 # Use unicorn as the web server
 # gem 'unicorn'

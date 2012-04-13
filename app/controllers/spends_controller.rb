@@ -19,7 +19,7 @@ class SpendsController < ApplicationController
        @spends = @spends.tagged_as(params[:with_tag])
     end
 
-    @sum = @spends.already_done.sum(:ammount)
+    @sum = @spends.sum(:ammount)
     
     respond_to do |format|
       format.html # index.html.erb

@@ -13,8 +13,8 @@ development:
   encoding: unicode
   database: EcoFamily_development
   pool: 5
-  username: enzocappa
-  password: enzocappa
+  username: ecofam
+  password: ecofam
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -39,8 +39,8 @@ test:
   encoding: unicode
   database: EcoFamily_test
   pool: 5
-  username: enzocappa
-  password: enzocappa
+  username: ecofam
+  password: ecofam
   host: localhost
   port: 5432
 production:

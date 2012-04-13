@@ -27,10 +27,6 @@
     <%= f.label "Marcas" %><br/>
     <%= text_field_tag "tags_listing", to_tags_listing(@spend.tags) %>
   </div>
-  <div class="field">
-    <%= f.label :done %><br />
-    <%= f.check_box :done %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -10,5 +10,4 @@ class Spend < ActiveRecord::Base
   scope :at_month, lambda { |initial_date|    
     where("date between ? and ?", initial_date, initial_date.next_month.beginning_of_month)
   }
-  scope :already_done, :conditions => ['done = ?', true]
 end
