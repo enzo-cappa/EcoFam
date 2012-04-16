@@ -10,22 +10,22 @@
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<%if notice%>
 			<div class="row-fluid">
 				<div class="span12">
-					<p class="notice">
+					<div class="alert alert-info">
 						<%= notice %>
-					</p>
+					</div>
 				</div>
 			</div>
 			<% end -%>
 			<%if alert%>
 			<div class="row-fluid">
 				<div class="span12">
-					<p class="alert">
+					<div class="alert alert-error">
 						<%= alert %>
-					</p>
+					</div>
 				</div>
 			</div>
 			<% end -%>

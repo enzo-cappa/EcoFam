@@ -1,31 +1,17 @@
-<div class="row-fluid">
-	<div class="span12" >
-		<%= form_tag spends_path, :method => 'get' do %>
-		<div class="row-fluid">
-			<div class="span6">
-				<%= select_date @period_date, :prefix => :period, :order => [:month, :year]  %>
-			</div>
-			<div class="span6">
-				<%= submit_tag "Cambiar" %>
-			</div>
-		</div>
-		<% end %>
-	</div>
+<%= form_tag spends_path, :method => 'get', :class => "form-inline" do %>
+<%= select_date @period_date, :prefix => :period, :order => [:month, :year]  %>
+<%= submit_tag "Cambiar" %>
+<% end %>
+<div class="page-header">
+	<h1>Lista de gastos</h1>
 </div>
-<div class="row-fluid">
-	<div class="span12" >
-		<h1>Lista de gastos</h1>
-	</div>
-</div>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped table-condensed">
 	<thead>
 		<tr>
 			<th>Fecha</th>
 			<th>Titulo</th>
 			<th>Monto</th>
 			<th>Marcas</th>
-			<th/>
-			<th/>
 			<th/>
 		</tr>
 	</thead>
@@ -36,20 +22,21 @@
 			<td><%= spend.titulo %></td>
 			<td><%= number_to_currency(spend.ammount, :unit => "$") %></td>
 			<td><%= raw(to_tags_links_listing(spend.tags)) %></td>
-			<td><%= link_to 'Show', spend %></td>
-			<td><%= link_to 'Edit', edit_spend_path(spend) %></td>
-			<td><%= link_to 'Destroy', spend, :confirm => 'Are you sure?', :method => :delete %></td>
+			<td>
+			<div class="btn-group">
+				<%= link_to 'Edit', edit_spend_path(spend), :class => "btn" %>
+				<%= link_to 'Destroy', spend, :confirm => 'Are you sure?', :method => :delete, :class => "btn" %>
+			</div></td>
 		</tr>
 		<% end %>
 	</tbody>
 	<tfoot>
 		<tr>
 			<td colspan="2" >Monto final</td>
-			<td><%= number_to_currency(@sum, :unit => "$") %> <td/>
-			<td/>
-			<td/>
-			<td/>
+			<td colspan="3"><%= number_to_currency(@sum, :unit => "$") %> </td>
 		</tr>
 	</tfoot>
 </table>
-<%= link_to 'Nuevo gasto', new_spend_path %> 
+<div class="btn-group">
+	<%= link_to 'Nuevo gasto', new_spend_path, :class => "btn" %>
+</div> 
