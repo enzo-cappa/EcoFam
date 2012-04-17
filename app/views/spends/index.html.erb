@@ -5,6 +5,7 @@
 <div class="page-header">
 	<h1>Lista de gastos</h1>
 </div>
+<div class="modal hide" id="crud_modal"> <div id="crud_content"></div></div>
 <table class="table table-bordered table-striped table-condensed">
 	<thead>
 		<tr>
@@ -38,5 +39,5 @@
 	</tfoot>
 </table>
 <div class="btn-group">
-	<%= link_to 'Nuevo gasto', new_spend_path, :class => "btn" %>
+	<%= link_to 'Nuevo gasto', new_spend_path, :class => "btn", :remote => true %>
 </div> 

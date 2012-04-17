@@ -11,6 +11,7 @@ gem 'can_be_tagged', :git => 'git://github.com/zherk/can_be_tagged.git'
 
 gem 'devise'
 gem 'jquery-rails'
+gem 'less-rails-bootstrap'
 # Use unicorn as the web server
 # gem 'unicorn'
 
