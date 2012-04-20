@@ -3,11 +3,11 @@ class Spend < ActiveRecord::Base
 
   validates :titulo, :presence => true
   validates :ammount, :presence => true
-  validates :date, :presence => true
+  validates :spend_date, :presence => true
   validates :ammount, :numericality => true
 
-  default_scope :order => 'date ASC, created_at ASC'
+  default_scope :order => 'spend_date ASC, created_at ASC'
   scope :at_month, lambda { |initial_date|    
-    where("date between ? and ?", initial_date, initial_date.next_month.beginning_of_month)
+    where("spend_date between ? and ?", initial_date, initial_date.next_month.beginning_of_month)
   }
 end

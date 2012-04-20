@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412235447) do
+ActiveRecord::Schema.define(:version => 20120420201440) do
 
   create_table "spends", :force => true do |t|
     t.string   "titulo"
     t.decimal  "ammount"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date     "date"
+    t.date     "spend_date"
   end
 
   create_table "tag_lines", :force => true do |t|
