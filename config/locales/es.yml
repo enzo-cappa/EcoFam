@@ -1,0 +1,10 @@
+es:
+  activerecord:   
+    models:
+      spend: "gasto"
+      user: "usuario"
+    attributes:
+      spend:
+        date: Fecha
+        titulo: Titulo
+        ammount: Monto
