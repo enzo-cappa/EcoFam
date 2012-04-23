@@ -1,19 +1,9 @@
-<%= form_for @spend, :html => {:class => "form-horizontal"} do |f| %>
-<% if @spend.errors.any? %>
-<div id="error_explanation">
-	<h2><%= pluralize(@spend.errors.count, "error") %> prohibited this spend from being saved:</h2>
-	<ul>
-		<% @spend.errors.full_messages.each do |msg| %>
-		<li>
-			<%= msg %>
-		</li>
-		<% end %>
-	</ul>
+<%= form_for @spend, :html => {:class => "form-horizontal"}, :remote => true do |f| %>
+<div id="errors">	
 </div>
-<% end %>
 <fieldset>
 	<div class="control-group">
-		<%= f.label :date, :class => "control-label" %>
+		<%= f.label :spend_date, :class => "control-label" %>
 		<div class="controls">
 			<%= f.date_select :spend_date %>
 		</div>

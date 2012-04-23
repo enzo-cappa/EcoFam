@@ -1,13 +1,4 @@
-es:
-  activerecord:   
-    models:
-      spend: "gasto"
-      user: "usuario"
-    attributes:
-      spend:
-        spend_date: Fecha
-        titulo: Titulo
-        ammount: Monto
+es:  
   devise:
     failure:
       user:
@@ -212,5 +203,12 @@ es:
       <<: *errors
   activerecord:
     errors:
-      <<: *errors
-      
+      <<: *errors   
+    models:
+      spend: "gasto"
+      user: "usuario"
+    attributes:
+      spend:
+        spend_date: Fecha
+        titulo: Título
+        ammount: Monto      

@@ -53,6 +53,12 @@ class SpendsController < ApplicationController
   # GET /spends/1/edit
   def edit
     @spend = Spend.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @spend }
+      format.js 
+    end
   end
 
   # POST /spends
@@ -65,9 +71,11 @@ class SpendsController < ApplicationController
       if @spend.save
         format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully created.') }
         format.xml  { render :xml => @spend, :status => :created, :location => @spend }
+        format.js
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @spend.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -82,9 +90,11 @@ class SpendsController < ApplicationController
       if @spend.update_attributes(params[:spend])
         format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully updated.') }
         format.xml  { head :ok }
+        format.js
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @spend.errors, :status => :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -98,6 +108,7 @@ class SpendsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(spends_url) }
       format.xml  { head :ok }
+      format.js
     end
   end
 end

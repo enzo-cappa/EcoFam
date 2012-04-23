@@ -1,0 +1,6 @@
+<% if @spend.errors.any? %>
+$('#errors').html('<%= escape_javascript(render 'error' )%>')
+<% else %>
+$('<%= escape_javascript(render(:partial => @spend))%>').appendTo('#spends');
+$('#crud_modal').modal('toggle');
+<% end %>
