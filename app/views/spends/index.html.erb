@@ -2,6 +2,14 @@
 <%= select_date @period_date, :prefix => :period, :order => [:month, :year]  %>
 <%= submit_tag "Cambiar" %>
 <% end %>
+<ul class="pager">
+	<li class="previous">
+		<%= link_to raw('&larr; Anterior'), spends_path, :period => @prev_period %>
+	</li>
+	<li class="next">
+		<%= link_to raw('Siguiente &rarr;'), spends_path, :period => @next_period %>
+	</li>
+</ul>
 <div class="page-header">
 	<h1>Lista de gastos</h1>
 </div>

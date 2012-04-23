@@ -3,15 +3,15 @@ class SpendsController < ApplicationController
   # GET /spends.xml
   def index
     if params[:period]
-      year = params[:period][:year]  
-      month = params[:period][:month]
+      @period_date = params[:period].beginning_of_month()
     end
+    @period_date = params[:period].beginning_of_month()
+    logger.debug { "date" + @period_date }
+    @period_date = Time.now.beginning_of_month() unless @period_date
     
-    
-    year = Time.now.year unless year       
-    month = Time.now.month unless month
-    
-    @period_date = DateTime.new(year.to_i, month.to_i, 1)
+    #@period_date = DateTime.new(period)
+    @prev_period = @period_date - 1.month
+    @next_period = @period_date + 1.month
     
     @spends = Spend.at_month @period_date
     
