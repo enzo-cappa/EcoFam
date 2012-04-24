@@ -1,7 +1,8 @@
 EcoFamily::Application.routes.draw do
   devise_for :users
 
-  resources :spends
+  match 'spends/:year/:month' => 'spends#index'
+  resources :spends 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

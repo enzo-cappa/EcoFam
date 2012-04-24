@@ -1,7 +1,14 @@
-<%= form_tag spends_path, :method => 'get', :class => "form-inline" do %>
-<%= select_date @period_date, :prefix => :period, :order => [:month, :year]  %>
-<%= submit_tag "Cambiar" %>
-<% end %>
+<ul class="pager">
+	<li class="previous">
+		<%= link_to raw('&larr; Anterior'), spends_path(:year=> @prev_period.year, :month => @prev_period.month) %>
+	</li>
+	<li>
+		<%= l @period_date, :format => '%B de %Y' %>
+	</li>
+	<li class="next">
+		<%= link_to raw('Siguiente &rarr;'), spends_path(:year=> @next_period.year, :month => @next_period.month) %>
+	</li>
+</ul>
 <div class="page-header">
 	<h1>Lista de gastos</h1>
 </div>

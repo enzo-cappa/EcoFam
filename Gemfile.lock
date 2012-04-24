@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/zherk/can_be_tagged.git
-  revision: 85354ed30d5e6b21ece42af6d1b2eb090946aafe
+  revision: f084f0b67fc5f6e055714f46826ad73fcb093248
   specs:
-    can_be_tagged (0.0.1)
+    can_be_tagged (0.0.2)
 
 GEM
   remote: http://rubygems.org/
@@ -47,9 +47,10 @@ GEM
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
-    jquery-rails (2.0.1)
+    jquery-rails (2.0.2)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
+    jquery_datepicker (0.3.4)
     json (1.6.6)
     less (2.1.0)
       commonjs (~> 0.2.0)
@@ -65,9 +66,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.18)
-    multi_json (1.2.0)
+    multi_json (1.3.2)
     orm_adapter (0.0.7)
-    pg (0.11.0)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -116,6 +117,7 @@ DEPENDENCIES
   can_be_tagged!
   devise
   jquery-rails
+  jquery_datepicker
   less-rails-bootstrap
   pg
-  rails (= 3.2.0)
+  rails (= 3.2)
