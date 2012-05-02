@@ -3,4 +3,5 @@ $('#errors').html('<%= escape_javascript(render 'error' )%>')
 <% else %>
 $("#<%= dom_id(@spend) %>").replaceWith("<%= escape_javascript(render(:partial => @spend)) %>");
 $('#crud_modal').modal('toggle');
+$("#balance").trigger('spends_change');
 <% end %>

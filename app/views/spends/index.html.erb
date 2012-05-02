@@ -31,7 +31,7 @@
 	<tfoot style="font-weight: bold;">
 		<tr>
 			<td colspan="2" style="text-align: right;">Monto final</td>
-			<td colspan="2"><%= number_to_currency(@sum, :unit => "$") %> </td>
+			<td colspan="2"><div id="balance"><%= number_to_currency(@sum) %></td>
 			<td/>
 		</tr>
 	</tfoot>
@@ -39,3 +39,15 @@
 <div class="btn-group">
 	<%= link_to 'Nuevo gasto', new_spend_path, :class => "btn", :remote => true %>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){		
+		jQuery(function($) {			 
+			$("#balance").bind('spends_change', function(){
+			    $.getJSON("<%= balance_url(:year=> @period_date.year, :month => @period_date.month) %>", function(data) {
+			    	$("#balance").html(data.balance);
+		    	});
+			});	
+		});
+	});	
+</script>

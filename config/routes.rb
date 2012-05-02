@@ -1,6 +1,7 @@
 EcoFamily::Application.routes.draw do
   devise_for :users
 
+  match 'spends/balance/:year/:month' => 'spends#balance', :as => :balance
   match 'spends/history/:year/:month' => 'spends#index', :as => :history
   resources :spends 
 

@@ -1,4 +1,5 @@
 class SpendsController < ApplicationController
+  include ActionView::Helpers::NumberHelper
   # GET /spends
   # GET /spends.xml
   def index
@@ -11,10 +12,8 @@ class SpendsController < ApplicationController
     year = Time.now.year unless year
     month = Time.now.month unless month
     
-    @period_date = DateTime.new(year.to_i, month.to_i, 1)     
-    @period_date = DateTime.now.beginning_of_month() unless @period_date
+    @period_date = DateTime.new(year.to_i, month.to_i, 1)
     
-    #@period_date = DateTime.new(period)
     @prev_period = @period_date - 1.month
     @next_period = @period_date + 1.month
     
@@ -114,6 +113,21 @@ class SpendsController < ApplicationController
       format.html { redirect_to(spends_url) }
       format.xml  { head :ok }
       format.js
+    end
+  end
+  
+  def balance
+  
+    year = params[:year]
+    month = params[:month]
+    
+    period_date = DateTime.new(year.to_i, month.to_i, 1)    
+    spends = Spend.at_month period_date
+
+    sum = spends.sum(:ammount)
+    
+    respond_to do |format|
+      format.json { render :json => {:balance => number_to_currency(sum)} }
     end
   end
 end
