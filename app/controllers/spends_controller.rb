@@ -73,7 +73,7 @@ class SpendsController < ApplicationController
     @spend.tags = tags
     respond_to do |format|
       if @spend.save
-        format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully created.') }
+        format.html { redirect_to spends_path, :flash => { :notice => t("msg.creation.success")} }
         format.xml  { render :xml => @spend, :status => :created, :location => @spend }
         format.js
       else
@@ -92,7 +92,7 @@ class SpendsController < ApplicationController
     @spend.tags = tags
     respond_to do |format|
       if @spend.update_attributes(params[:spend])
-        format.html { redirect_to(:action => 'index', :notice => 'Spend was successfully updated.') }
+        format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }
         format.xml  { head :ok }
         format.js
       else

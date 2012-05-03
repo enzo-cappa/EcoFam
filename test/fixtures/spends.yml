@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  titulo: MyString
+  titulo: Income
   ammount: 9.99
-  done: false
+  spend_date: 2010-10-10
 
 two:
-  titulo: MyString
+  titulo: Outcome
   ammount: 9.99
-  done: false
+  spend_date: 2010-10-10
