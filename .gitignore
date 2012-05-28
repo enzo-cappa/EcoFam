@@ -5,3 +5,4 @@ tmp/
 *~
 *.swp
 config/database.yml
+EcoFam.war

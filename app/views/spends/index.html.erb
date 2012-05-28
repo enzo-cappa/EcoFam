@@ -24,9 +24,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<% @spends.each_with_index do |spend, i| %>
-		<%= render(:partial => spend) %>
-		<% end %>
+		<%= render(:partial => 'spend', :collection => @spends) %>
 	</tbody>
 	<tfoot style="font-weight: bold;">
 		<tr>
