@@ -1,0 +1,7 @@
+<Context>
+	<Resource name="jdbc/ecofam_rails" auth="Container"
+	type="javax.sql.DataSource" driverClassName="org.postgresql.Driver"
+	url="jdbc:postgresql://127.0.0.1:5432/EcoFamily_production"
+	username="ecofam" password="ecofam" maxActive="2" maxIdle="1"
+	maxWait="-1"/>
+</Context>
