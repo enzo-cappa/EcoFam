@@ -1,16 +1,20 @@
 <ul class="pager">
 	<li class="previous">
-		<%= link_to raw('&larr; Anterior'), history_url(:year=> @prev_period.year, :month => @prev_period.month) %>
+		<%= link_to raw('&larr; Anterior'), history_url(:year=> @prev_period.year, :month => @prev_period.month, :with_tag => @tag) %>
 	</li>
 	<li>
-		<%= l @period_date, :format => '%B de %Y' %>
+		<%= link_to 'Actual', history_url(:year=> Time.now.year, :month => Time.now.month, :with_tag => @tag) %>		
 	</li>
 	<li class="next">
-		<%= link_to raw('Siguiente &rarr;'), history_url(:year=> @next_period.year, :month => @next_period.month) %>
+		<%= link_to raw('Siguiente &rarr;'), history_url(:year=> @next_period.year, :month => @next_period.month, :with_tag => @tag) %>
 	</li>
 </ul>
 <div class="page-header">
 	<h1>Lista de gastos</h1>
+	<h3><%= l @period_date, :format => '%B de %Y' %></h3>
+	<%if @tag%>
+	<h3>Marcado como: <%= @tag %> <%= link_to 'X', history_url(:year=> @period_date.year, :month => @period_date.month) %></h3>
+	<%end%>
 </div>
 <div class="modal hide" id="crud_modal"></div>
 <table class="table table-striped table-condensed" id="spends">

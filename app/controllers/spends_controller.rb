@@ -20,7 +20,8 @@ class SpendsController < ApplicationController
     @spends = Spend.at_month @period_date
     
     if params[:with_tag]
-       @spends = @spends.tagged_as(params[:with_tag])
+      @tag = params[:with_tag]
+      @spends = @spends.tagged_as(@tag)
     end
 
     @sum = @spends.sum(:ammount)

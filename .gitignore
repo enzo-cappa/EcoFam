@@ -7,3 +7,4 @@ tmp/
 config/database.yml
 EcoFam.war
 .project
+public/assets/*
