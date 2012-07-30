@@ -30,5 +30,7 @@ production:
   pool: 5
   username: ecofam
   password: ecofam
+  host: localhost
+  port: 5432
 <% end %>
 
