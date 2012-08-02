@@ -213,3 +213,8 @@ es:
         spend_date: Fecha
         titulo: Título
         ammount: Monto      
+  msg:
+    creation:
+      success: Se creó la línea correctamente 
+    creation:
+      success: Se actualizó la línea correctamente

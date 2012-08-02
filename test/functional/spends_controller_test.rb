@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class SpendsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
+    @user = users(:one)
+    sign_in :user, @user
     @spend = spends(:one)
   end
 
@@ -21,7 +25,7 @@ class SpendsControllerTest < ActionController::TestCase
       post :create, :spend => @spend.attributes
     end
 
-    assert_redirected_to spend_path(assigns(:spend))
+    assert_redirected_to spends_path
   end
 
   test "should show spend" do
@@ -36,7 +40,7 @@ class SpendsControllerTest < ActionController::TestCase
 
   test "should update spend" do
     put :update, :id => @spend.to_param, :spend => @spend.attributes
-    assert_redirected_to spend_path(assigns(:spend))
+    assert_redirected_to spends_path
   end
 
   test "should destroy spend" do
