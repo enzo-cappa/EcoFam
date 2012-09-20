@@ -26,11 +26,11 @@ production:
 <% else %>
   adapter: postgresql
   encoding: unicode
-  database: EcoFamily_production
+  database: <%=ENV['OPENSHIFT_APP_NAME']%>
   pool: 5
-  username: ecofam
-  password: ecofam
-  host: localhost
+  username: <%=ENV['OPENSHIFT_DB_USERNAME']%>
+  password: <%=ENV['OPENSHIFT_DB_PASSWORD']%>
+  host: 127.9.102.129
   port: 5432
 <% end %>
 
