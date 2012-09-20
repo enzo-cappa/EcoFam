@@ -1,0 +1,55 @@
+<ul class="pager">
+	<li class="previous">
+		<%= link_to raw('&larr; Anterior'), history_url(:year=> @prev_period.year, :month => @prev_period.month, :with_tag => @tag) %>
+	</li>
+	<li>
+		<%= link_to 'Actual', history_url(:year=> Time.now.year, :month => Time.now.month, :with_tag => @tag) %>		
+	</li>
+	<li class="next">
+		<%= link_to raw('Siguiente &rarr;'), history_url(:year=> @next_period.year, :month => @next_period.month, :with_tag => @tag) %>
+	</li>
+</ul>
+<div class="page-header">
+	<h1>Lista de gastos</h1>
+	<h3><%= l @period_date, :format => '%B de %Y' %></h3>
+	<%if @tag%>
+	<h3>Marcado como: <%= @tag %> <%= link_to 'X', history_url(:year=> @period_date.year, :month => @period_date.month) %></h3>
+	<%end%>
+</div>
+<div class="modal hide" id="crud_modal"></div>
+<table class="table table-striped table-condensed" id="spends">
+	<thead>
+		<tr>
+			<th>Fecha</th>
+			<th>T&iacute;tulo</th>
+			<th>Monto</th>
+			<th>Marcas</th>
+			<th/>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render(:partial => 'spend', :collection => @spends) %>
+	</tbody>
+	<tfoot style="font-weight: bold;">
+		<tr>
+			<td colspan="2" style="text-align: right;">Monto final</td>
+			<td colspan="2"><div id="balance"><%= number_to_currency(@sum) %></td>
+			<td/>
+		</tr>
+	</tfoot>
+</table>
+<div class="btn-group">
+	<%= link_to 'Nuevo gasto', new_spend_path, :class => "btn", :remote => true %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){		
+		jQuery(function($) {			 
+			$("#balance").bind('spends_change', function(){
+			    $.getJSON("<%= balance_url(:year=> @period_date.year, :month => @period_date.month) %>", function(data) {
+			    	$("#balance").html(data.balance);
+		    	});
+			});	
+		});
+	});	
+</script>

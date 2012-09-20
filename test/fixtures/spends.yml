@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  titulo: Income
+  ammount: 9.99
+  spend_date: 2010-10-10
+
+two:
+  titulo: Outcome
+  ammount: 9.99
+  spend_date: 2010-10-10

@@ -1,0 +1,10 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+*~
+*.swp
+config/database.yml
+EcoFam.war
+.project
+public/assets/*
