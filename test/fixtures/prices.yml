@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ammount: 9.99
+  special: false
+  market_id: 1
+
+two:
+  ammount: 9.99
+  special: false
+  market_id: 1
