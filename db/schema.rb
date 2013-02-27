@@ -11,13 +11,70 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420201440) do
+ActiveRecord::Schema.define(:version => 20130220191438) do
+
+  create_table "brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "market_brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "markets", :force => true do |t|
+    t.string   "name"
+    t.integer  "market_brand_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "measure_units", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "prices", :force => true do |t|
+    t.decimal  "ammount"
+    t.boolean  "special"
+    t.integer  "market_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.integer  "brand_id"
+    t.integer  "measure_unit_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "purchase_lines", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "purchase_id"
+    t.integer  "price_id"
+    t.decimal  "quantity"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "purchases", :force => true do |t|
+    t.decimal  "total"
+    t.integer  "market_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "spends", :force => true do |t|
     t.string   "titulo"
     t.decimal  "ammount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.date     "spend_date"
   end
 
@@ -25,14 +82,14 @@ ActiveRecord::Schema.define(:version => 20120420201440) do
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -44,5 +101,12 @@ ActiveRecord::Schema.define(:version => 20120420201440) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "varietes", :force => true do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

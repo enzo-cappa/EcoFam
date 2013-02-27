@@ -3,6 +3,9 @@ class Product < ActiveRecord::Base
   has_many :purchases, :through => :purchase_line
   has_many :prices
   belongs_to :brand
-  belonts_to :variete
-  belong_to :measure_unit
+  belongs_to :variete
+  belongs_to :measure_unit
+
+  validates :name, :presence => true
+  validates :brand_id, :presence => true
 end

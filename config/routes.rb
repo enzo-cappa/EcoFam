@@ -3,7 +3,8 @@ EcoFamily::Application.routes.draw do
 
   match 'spends/balance/:year/:month' => 'spends#balance', :as => :balance
   match 'spends/history/:year/:month' => 'spends#index', :as => :history
-  resources :spends 
+  resources :spends
+  resources :products
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
