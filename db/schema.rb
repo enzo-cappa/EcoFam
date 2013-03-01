@@ -64,10 +64,11 @@ ActiveRecord::Schema.define(:version => 20130220191438) do
   end
 
   create_table "purchases", :force => true do |t|
-    t.decimal  "total"
+    t.decimal  "total",         :precision => 10, :scale => 2, :null => false
     t.integer  "market_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.date     "purchase_date"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
   end
 
   create_table "spends", :force => true do |t|

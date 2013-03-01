@@ -5,6 +5,7 @@ EcoFamily::Application.routes.draw do
   match 'spends/history/:year/:month' => 'spends#index', :as => :history
   resources :spends
   resources :products
+  resources :purchases
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
