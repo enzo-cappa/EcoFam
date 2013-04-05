@@ -28,6 +28,8 @@ else
   gem 'pg'
 end
 
+gem 'bootstrap_form'
+
 # This version needs to be hardcoded for OpenShift compatability
 gem 'thor', '= 0.14.6'
 
