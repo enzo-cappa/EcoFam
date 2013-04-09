@@ -1,33 +1,13 @@
-<%= form_for @spend, :html => {:class => "form-horizontal"}, :remote => true do |f| %>
-<div id="errors">	
-</div>
-<fieldset>
-	<div class="control-group">
-		<%= f.label :spend_date, :class => "control-label" %>
-		<div class="controls">			
-			<%= f.date_select :spend_date %>
-		</div>
-	</div>
-	<div class="control-group">
-		<%= f.label :titulo, :class => "control-label" %>
-		<div class="controls">
-			<%= f.text_field :titulo %>
-		</div>
-	</div>
-	<div class="control-group">
-		<%= f.label :ammount, :class => "control-label" %>
-		<div class="controls">
-			<%= f.text_field :ammount %>
-		</div>
-	</div>
-	<div class="control-group">
-		<%= f.label "Marcas", :class => "control-label" %>
-		<div class="controls">
-			<%= text_field_tag "tags_listing", to_tags_listing(@spend.tags) %>
-		</div>
-	</div>
-	<div class="form-actions">
-		<%= f.submit %>
-	</div>
-</fieldset>
+<%= bootstrap_form_for(@spend, html: { class: 'form-horizontal' }, help: :block, :remote => true) do |f| %>
+	<%= f.date_select :spend_date %>
+  <%= f.text_field :titulo %>
+  <%= f.text_field :ammount %>
+  <%= f.control_group :tags, label: { text: 'Marcas' } do %>
+  <%= text_field_tag "tags_listing", to_tags_listing(@spend.tags) %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.primary 'Guardar', disable_with: 'Saving...' %>
+  <% end %>
 <% end %> 
+<div id="errors">      
+</div>
