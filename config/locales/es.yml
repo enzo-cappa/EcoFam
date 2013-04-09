@@ -208,11 +208,16 @@ es:
     models:
       spend: "gasto"
       user: "usuario"
+      purchase: "Compra"
+      product: "Producto"
     attributes:
       spend:
         spend_date: Fecha
         titulo: Título
-        ammount: Monto      
+        ammount: Monto
+      purchase:
+        market: "Mercado"
+        purchase_date: "Fecha"
   msg:
     creation:
       success: Se creó la línea correctamente 

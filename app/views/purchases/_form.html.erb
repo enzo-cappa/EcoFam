@@ -1,25 +1,14 @@
-<%= form_for(@purchase) do |f| %>
-  <% if @purchase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+<%= bootstrap_form_for(@purchase, html: {:class => "form-horizontal"}, help: :block, remote: true) do |f| %>  
+  <div id="errors"></div>
+  <%= f.date_select :purchase_date %>
+  <%= f.text_field :market, placeholder: Purchase.human_attribute_name(:market) %>
 
-      <ul>
-      <% @purchase.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <legend><%= Product.model_name.human.pluralize %></legend>
+  <%= fields_for :purchase_lines do |builder| %>
+  <%= render("purchase_line_fields", f: builder) %>
   <% end %>
 
-
-  <fieldset>
-    <legend>Compra</legend>
-    <%= f.label :purchase_date %>
-	  <%= f.text_field :purchase_date, :placeholder => "Fecha" %>
-    <%= f.label :market %>
-    <%= f.text_field :market, :placeholder => "Mercado" %>
-    <label/>
-    <button type="submit" class="btn">Submit</button>
-  </fieldset>
-
+  <%= f.actions do %>
+    <%= f.primary 'Guardar', disable_with: 'Guardando...' %>
+  <% end %>
 <% end %>
