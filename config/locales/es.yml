@@ -223,3 +223,6 @@ es:
       success: Se creó la línea correctamente 
     creation:
       success: Se actualizó la línea correctamente
+  bootstrap_forms:
+    buttons:
+      cancel: "Cancelar"

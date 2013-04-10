@@ -3,4 +3,5 @@ class Purchase < ActiveRecord::Base
   has_many :products, :through  => :purchase_line
   has_many :purchase_lines
   belongs_to :market
+  accepts_nested_attributes_for :purchase_lines
 end

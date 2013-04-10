@@ -1,14 +1,13 @@
-<%= bootstrap_form_for(@purchase, html: {:class => "form-horizontal"}, help: :block, remote: true) do |f| %>  
+<%= bootstrap_nested_form_for(@purchase, html: {:class => "form-horizontal"}, help: :block, remote: true) do |f| %>
   <div id="errors"></div>
   <%= f.date_select :purchase_date %>
   <%= f.text_field :market, placeholder: Purchase.human_attribute_name(:market) %>
 
   <legend><%= Product.model_name.human.pluralize %></legend>
-  <%= fields_for :purchase_lines do |builder| %>
-  <%= render("purchase_line_fields", f: builder) %>
-  <% end %>
+  <%= f.fields_for :purchase_lines %>
+  <%= f.link_to_add "Agregar producto", :purchase_lines %>
 
-  <%= f.actions do %>
-    <%= f.primary 'Guardar', disable_with: 'Guardando...' %>
-  <% end %>
+  <%= f.actions %>
 <% end %>
+
+
