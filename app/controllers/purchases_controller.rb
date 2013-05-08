@@ -25,7 +25,10 @@ class PurchasesController < ApplicationController
   # GET /purchases/new.json
   def new
     @purchase = Purchase.new
-
+    @purchase.purchase_lines.push(PurchaseLine.new)
+    @purchase.market = Market.new
+    @markets = Market.all.collect(&:name)
+    @products = Product.all.collect(&:name)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @purchase }

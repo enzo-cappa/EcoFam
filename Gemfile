@@ -14,7 +14,7 @@ gem 'can_be_tagged', :git => 'git://github.com/zherk/can_be_tagged.git'
 
 gem 'devise'
 gem 'jquery-rails'
-gem 'less-rails-bootstrap'
+gem "less-rails-bootstrap", "~> 2.3.2"
 
 if defined?(JRUBY_VERSION)
   gem 'activerecord-jdbc-adapter'
@@ -28,8 +28,10 @@ else
   gem 'pg'
 end
 
-gem 'bootstrap_forms'
+#gem 'bootstrap_forms'
 gem 'nested_form'
+
+gem 'simple_form'
 
 # This version needs to be hardcoded for OpenShift compatability
 gem 'thor', '= 0.14.6'

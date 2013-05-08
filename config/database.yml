@@ -1,29 +1,24 @@
 development:
-  adapter: <%= defined?(JRUBY_VERSION) ? 'jdbcpostgresql' : 'postgresql' %> 
+  adapter: 'postgresql'
   encoding: unicode
   database: EcoFamily_development
   pool: 5
-  username: ecofam
-  password: ecofam
+  username: zherk
+  password: zherk
   host: localhost
   port: 5432
 
 test:
-  adapter: <%= defined?(JRUBY_VERSION) ? 'jdbcpostgresql' : 'postgresql' %> 
+  adapter: 'postgresql'
   encoding: unicode
   database: EcoFamily_test
   pool: 5
-  username: ecofam
-  password: ecofam
+  username: zherk
+  password: zherk
   host: localhost
   port: 5432
 
-production:
-<% if defined?(JRUBY_VERSION) %>
-  adapter: jdbc
-  jndi: java:comp/env/jdbc/ecofam_rails
-  driver: org.postgresql.Driver
-<% else %>
+production1:
   adapter: postgresql
   encoding: unicode
   database: <%=ENV['OPENSHIFT_APP_NAME']%>
@@ -32,5 +27,13 @@ production:
   password: <%=ENV['OPENSHIFT_DB_PASSWORD']%>
   host: 127.9.102.129
   port: 5432
-<% end %>
 
+production:
+  adapter: <%= defined?(JRUBY_VERSION) ? 'jdbcpostgresql' : 'postgresql' %> 
+  encoding: unicode
+  database: EcoFamily_development
+  pool: 5
+  username: ecofam
+  password: ecofam
+  host: localhost
+  port: 5432

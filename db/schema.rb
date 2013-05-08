@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220191438) do
+ActiveRecord::Schema.define(:version => 20130418192622) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20130220191438) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.integer  "brand_id"
     t.integer  "measure_unit_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -61,14 +60,15 @@ ActiveRecord::Schema.define(:version => 20130220191438) do
     t.decimal  "quantity"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "brand_id"
   end
 
   create_table "purchases", :force => true do |t|
-    t.decimal  "total",         :precision => 10, :scale => 2, :null => false
+    t.decimal  "total",         :precision => 10, :scale => 2, :default => 0.0
     t.integer  "market_id"
     t.date     "purchase_date"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
   end
 
   create_table "spends", :force => true do |t|

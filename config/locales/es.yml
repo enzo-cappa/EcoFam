@@ -223,6 +223,9 @@ es:
       success: Se creó la línea correctamente 
     creation:
       success: Se actualizó la línea correctamente
-  bootstrap_forms:
+  simple_form:
     buttons:
+      or: 'o'
       cancel: "Cancelar"
+    creating: "Creando..."
+    creating: "Actualizando..."

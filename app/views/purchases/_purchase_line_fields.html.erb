@@ -2,13 +2,18 @@
   <div class="span2">
     <%= f.text_field :quantity, label: false, control_group: false, placeholder: "Cantidad", class: "input-block-level" %>
   </div>
-  <div class="span6">
-    <%= f.text_field :product, label: false, control_group: false, placeholder: "Producto", class: "input-block-level" %>
+  <div class="span4">
+    <%= f.simple_fields_for :product do |product_form| %>
+      <%= product_form.text_field :name, label: false, control_group: false, placeholder: "Producto", class: "input-block-level", input_html: { "data-provide" => "typeahead", "data-source" => "" } %>
+    <% end %>
   </div>
+  <div class="span3">
+    <%= f.text_field :brand, label: false, control_group: false, placeholder: "Marca", class: "input-block-level", input_html: { "data-provide" => "typeahead", "data-source" => "javascript:getProducts()" } %>
+  </div>  
   <div class="span2">
     <%= f.text_field :price, label: false, control_group: false, placeholder: "Precio", class: "input-block-level" %>
   </div>
-  <div class="span2">    
-    <%= f.link_to_remove "Quitar producto" %>
+  <div class="span1">
+    <%= f.link_to_remove "-", class: "btn btn-danger"  %>
   </div>
 </div>
