@@ -96,6 +96,8 @@ GEM
       activesupport (= 3.2.12)
       bundler (~> 1.0)
       railties (= 3.2.12)
+    rails_bootstrap_navbar (0.1.5.beta)
+      rails (>= 3.0.0)
     railties (3.2.12)
       actionpack (= 3.2.12)
       activesupport (= 3.2.12)
@@ -149,6 +151,7 @@ DEPENDENCIES
   nested_form
   pg
   rails (= 3.2.12)
+  rails_bootstrap_navbar
   sass-rails (~> 3.2.3)
   simple_form
   therubyracer

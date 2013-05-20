@@ -28,10 +28,9 @@ else
   gem 'pg'
 end
 
-#gem 'bootstrap_forms'
 gem 'nested_form'
-
 gem 'simple_form'
+gem 'rails_bootstrap_navbar'
 
 # This version needs to be hardcoded for OpenShift compatability
 gem 'thor', '= 0.14.6'
