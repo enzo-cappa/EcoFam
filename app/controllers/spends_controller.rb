@@ -7,13 +7,12 @@ class SpendsController < ApplicationController
       year = params[:year]
       month = params[:month]
     end
-    
-    
+
     year = Time.now.year unless year
     month = Time.now.month unless month
     
     @period_date = DateTime.new(year.to_i, month.to_i, 1)
-    
+
     @prev_period = @period_date - 1.month
     @next_period = @period_date + 1.month
     
@@ -69,8 +68,9 @@ class SpendsController < ApplicationController
   # POST /spends
   # POST /spends.xml
   def create
+    #FIXME: This is ugly....
+    tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = Spend.new(params[:spend])
-    tags = from_tags_listing(params[:tags_listing])
     @spend.tags = tags
     respond_to do |format|
       if @spend.save
@@ -88,8 +88,8 @@ class SpendsController < ApplicationController
   # PUT /spends/1
   # PUT /spends/1.xml
   def update
+    tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = Spend.find(params[:id])
-    tags = from_tags_listing(params[:tags_listing])
     @spend.tags = tags
     respond_to do |format|
       if @spend.update_attributes(params[:spend])

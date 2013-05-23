@@ -2,7 +2,7 @@
   <div id="errors"></div>
   <%= f.input :purchase_date %>
   <%= f.fields_for :market do |n| %>
-    <%= n.input(:name, placeholder: Purchase.human_attribute_name(:market), input_html: { "data-provide" => "typeahead", 'data-source' => @markets.to_json}) %>
+    <%= n.input(:name, placeholder: Purchase.human_attribute_name(:market), input_html: { "data-provide" => "typeahead", 'data-source' => @markets.to_json}, label: false) %>
   <% end %>
   <legend><%= Product.model_name.human.pluralize %></legend>
   <div id="lines">
