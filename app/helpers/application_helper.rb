@@ -15,4 +15,8 @@ module ApplicationHelper
         flash_type.to_s
     end
   end
+
+  def history_url(model_name, params)
+    send "#{model_name}_history_url", params
+  end
 end

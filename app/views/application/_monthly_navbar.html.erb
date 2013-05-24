@@ -1,0 +1,12 @@
+<ul class="pager">
+	<li class="previous">
+		<%= link_to raw('&larr; Anterior'), history_url(model_name, :year=> @prev_period.year, :month => @prev_period.month, :with_tag => @tag) %>
+	</li>
+	<li>
+		<%= link_to 'Actual', history_url(model_name, :year=> Time.now.year, :month => Time.now.month, :with_tag => @tag) %>
+	</li>
+	<li class="next">
+		<%= link_to raw('Siguiente &rarr;'), history_url(model_name, :year=> @next_period.year, :month => @next_period.month, :with_tag => @tag) %>
+	</li>
+</ul>
+

@@ -1,21 +1,9 @@
 class SpendsController < ApplicationController
   include ActionView::Helpers::NumberHelper
+  before_filter :by_period, only: :index
   # GET /spends
   # GET /spends.xml
   def index
-    if params[:year] && params[:month] 
-      year = params[:year]
-      month = params[:month]
-    end
-
-    year = Time.now.year unless year
-    month = Time.now.month unless month
-    
-    @period_date = DateTime.new(year.to_i, month.to_i, 1)
-
-    @prev_period = @period_date - 1.month
-    @next_period = @period_date + 1.month
-    
     @spends = Spend.at_month @period_date
     
     if params[:with_tag]

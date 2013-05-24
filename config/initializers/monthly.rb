@@ -1,0 +1,1 @@
+require 'monthly/monthly'

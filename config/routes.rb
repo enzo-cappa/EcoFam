@@ -2,9 +2,10 @@ EcoFamily::Application.routes.draw do
   devise_for :users
 
   match 'spends/balance/:year/:month' => 'spends#balance', :as => :balance
-  match 'spends/history/:year/:month' => 'spends#index', :as => :history
+  match 'spends/history/:year/:month' => 'spends#index', :as => :spend_history
   resources :spends
   resources :products
+  match 'purchases/history/:year/:month' => 'purchases#index', :as => :purchase_history
   resources :purchases
 
   # The priority is based upon order of creation:

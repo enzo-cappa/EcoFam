@@ -1,8 +1,10 @@
 class PurchasesController < ApplicationController
+  before_filter :by_period, only: :index
+  
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = Purchase.all
+    @purchases = Purchase.at_month @period_date
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,6 +34,7 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @purchase }
+      format.js 
     end
   end
 

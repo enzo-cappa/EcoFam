@@ -1,4 +1,6 @@
 class Purchase < ActiveRecord::Base
+  acts_as_monthly
+  
   attr_accessible :purchase_date, :market_id, :total, :purchase_lines_attributes, :market_attributes
   has_many :products, :through  => :purchase_line
   has_many :purchase_lines
