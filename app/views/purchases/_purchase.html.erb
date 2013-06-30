@@ -1,7 +1,7 @@
 <tr id="<%= dom_id purchase %>">
 	<td><%= l purchase.purchase_date %></td>
 	<td><%= purchase.market.name %></td>
-	<td><%= number_to_currency(purchase.ammount, :unit => "$") %></td>
+	<td><%= number_to_currency(purchase.total, :unit => "$") %></td>
 	<td>
 	  <div class="btn-group">
 		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Acci&oacute;n <span class="caret"></span> </a>

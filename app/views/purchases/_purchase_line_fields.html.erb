@@ -4,7 +4,7 @@
   </div>
   <div class="span4">
     <%= f.simple_fields_for :product do |product_form| %>
-      <%= product_form.text_field :name, label: false, control_group: false, placeholder: "Producto", class: "input-block-level", input_html: { "data-provide" => "typeahead", "data-source" => "" } %>
+      <%= product_form.text_field :name, label: false, control_group: false, placeholder: "Producto", class: "input-block-level", "data-provide" => "typeahead", "data-source" => @products.to_json %>
     <% end %>
   </div>
   <div class="span3">

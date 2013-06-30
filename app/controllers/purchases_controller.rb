@@ -52,9 +52,11 @@ class PurchasesController < ApplicationController
       if @purchase.save
         format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
         format.json { render json: @purchase, status: :created, location: @purchase }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

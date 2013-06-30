@@ -6,4 +6,5 @@ module SpendsHelper
     end
     links_listing.chomp!(TagsHelper::DELIMITER)
   end
+
 end

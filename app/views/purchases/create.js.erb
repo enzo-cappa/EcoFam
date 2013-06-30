@@ -1,0 +1,6 @@
+<% if @purchase.errors.any? %>
+$('#errors').html('<%= escape_javascript(render 'error', model: @purchase )%>')
+<% else %>
+$('<%= escape_javascript(render(:partial => @purchase))%>').appendTo('#purchases');
+$('#crud_modal').modal('toggle');
+<% end %>
