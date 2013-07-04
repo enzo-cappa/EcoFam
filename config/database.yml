@@ -18,7 +18,7 @@ test:
   host: localhost
   port: 5432
 
-production1:
+production:
   adapter: postgresql
   encoding: unicode
   database: <%=ENV['OPENSHIFT_APP_NAME']%>
@@ -26,14 +26,4 @@ production1:
   username: <%=ENV['OPENSHIFT_DB_USERNAME']%>
   password: <%=ENV['OPENSHIFT_DB_PASSWORD']%>
   host: 127.9.102.129
-  port: 5432
-
-production:
-  adapter: <%= defined?(JRUBY_VERSION) ? 'jdbcpostgresql' : 'postgresql' %> 
-  encoding: unicode
-  database: EcoFamily_development
-  pool: 5
-  username: ecofam
-  password: ecofam
-  host: localhost
   port: 5432
