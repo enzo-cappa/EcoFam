@@ -1,7 +1,7 @@
 <tr id="<%= dom_id spend %>">
 	<td><%= l spend.spend_date %></td>
 	<td><%= spend.titulo %></td>
-	<td><%= number_to_currency(spend.ammount, :unit => "$") %></td>
+	<td><%= number_to_currency(spend.amount, :unit => "$") %></td>
 	<td><%= raw(to_tags_links_listing(spend.tags)) %></td>
 	<td>
 	  <div class="btn-group">

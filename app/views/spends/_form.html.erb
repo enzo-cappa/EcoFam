@@ -1,7 +1,7 @@
 <%= simple_form_for(@spend, remote: true) do |f| %>
   <%= f.input :spend_date %>
   <%= f.input :titulo %>
-  <%= f.input :ammount %>
+  <%= f.input :amount %>
   <%= f.input :tags_listing, input_html: { value: to_tags_listing(@spend.tags) } %>
 
   <%= f.button :wrapped %>

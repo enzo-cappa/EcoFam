@@ -1,11 +1,12 @@
-es:  
+es:
   devise:
     failure:
       user:
-        unauthenticated: "Debe identificarse primero" 
+        unauthenticated: "Debe identificarse primero"
+        invalid: "El usuario especificado no existe o la contraseña es incorrecta"
     sessions:
       user:
-        signed_in: "Fue identificado correctamente" 
+        signed_in: "Fue identificado correctamente"
   date:
     abbr_day_names:
     - dom

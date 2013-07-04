@@ -11,7 +11,7 @@ class SpendsController < ApplicationController
       @spends = @spends.tagged_as(@tag)
     end
 
-    @sum = @spends.sum(:ammount)
+    @sum = @spends.sum(:amount)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -113,7 +113,7 @@ class SpendsController < ApplicationController
     period_date = DateTime.new(year.to_i, month.to_i, 1)    
     spends = Spend.at_month period_date
 
-    sum = spends.sum(:ammount)
+    sum = spends.sum(:amount)
     
     respond_to do |format|
       format.json { render :json => {:balance => number_to_currency(sum)} }

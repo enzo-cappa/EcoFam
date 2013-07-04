@@ -1,5 +1,5 @@
 development:
-  adapter: 'postgresql'
+  adapter: 'sqlite3'
   encoding: unicode
   database: EcoFamily_development
   pool: 5
@@ -9,7 +9,7 @@ development:
   port: 5432
 
 test:
-  adapter: 'postgresql'
+  adapter: 'sqlite3'
   encoding: unicode
   database: EcoFamily_test
   pool: 5

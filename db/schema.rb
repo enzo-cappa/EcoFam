@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130531162657) do
+ActiveRecord::Schema.define(:version => 20130704200013) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(:version => 20130531162657) do
 
   create_table "spends", :force => true do |t|
     t.string   "titulo"
-    t.decimal  "ammount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.decimal  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.date     "spend_date"
   end
 
@@ -76,14 +76,14 @@ ActiveRecord::Schema.define(:version => 20130531162657) do
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "tags", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
