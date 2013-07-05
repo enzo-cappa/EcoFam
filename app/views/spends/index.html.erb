@@ -36,15 +36,17 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function(){		
-		jQuery(function($) {			 
-			$("#balance").bind('spends_change', function(){
-			    $.getJSON("<%= balance_url(:year=> @period_date.year, :month => @period_date.month) %>", function(data) {
-			    	$("#balance").html(data.balance);
-		    	});
-			});	
-		});
-	});	
+  var period= { year : <%= @period_date.year %>,
+                month: <%= @period_date.month %>};
+  $(document).ready(function(){
+    jQuery(function($) {
+      $("#balance").bind('spends_change', function(){
+	$.getJSON("<%= balance_url(:year=> @period_date.year, :month => @period_date.month) %>", function(data) {
+	  $("#balance").html(data.balance);
+	});
+      });
+    });
+  });
 </script>
 
 

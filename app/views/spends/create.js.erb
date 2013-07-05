@@ -1,7 +1,9 @@
 <% if @spend.errors.any? %>
-$('#errors').html('<%= escape_javascript(render 'error', model: @spend )%>')
+  $('#errors').html('<%= escape_javascript(render 'error', model: @spend )%>')
 <% else %>
-$('<%= escape_javascript(render(:partial => @spend))%>').appendTo('#spends');
-$('#crud_modal').modal('toggle');
-$("#balance").trigger('spends_change');
+  $('#crud_modal').modal('toggle');
+  if (<%= @spend.spend_date.year %> === period.year && <%= @spend.spend_date.month %> === period.month ) {
+    $('<%= escape_javascript(render(:partial => @spend))%>').appendTo('#spends');
+    $("#balance").trigger('spends_change');
+  }
 <% end %>
