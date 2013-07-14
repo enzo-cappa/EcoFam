@@ -4,7 +4,7 @@
 	<h1>Gastos</h1>
 	<h3><%= l @period_date, :format => '%B de %Y' %></h3>
 	<%if @tag%>
-	<h3>Marcado como: <%= @tag %> <%= link_to 'X', history_url(:year=> @period_date.year, :month => @period_date.month) %></h3>
+	<h3>Marcado como: <%= @tag %> <%= link_to 'X', history_url("spend", :year=> @period_date.year, :month => @period_date.month) %></h3>
 	<%end%>
 </div>
 <div class="modal hide" id="crud_modal"></div>
