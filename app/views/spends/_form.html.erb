@@ -1,9 +1,19 @@
 <%= simple_form_for(@spend, remote: true) do |f| %>
+  <%= f.input :needs_confirmation, as: :boolean %>
   <%= f.input :spend_date %>
   <%= f.input :titulo %>
   <%= f.input :amount %>
-  <%= f.input :tags_listing, input_html: { value: to_tags_listing(@spend.tags) } %>
-
+  <%= f.input :tags_listing, input_html: { value: to_tags_listing(@tags) } %>
   <%= f.button :wrapped %>
 <% end %> 
 <div id="errors"></div>
+
+<script>
+  $("#spend_needs_confirmation").click(function(){
+    $('.spend_spend_date').toggle(!this.checked);
+  });
+
+  $(".spend_spend_date").show(function(){
+    $(".spend_spend_date").toggle(!$("#spend_needs_confirmation").prop('checked'));
+  });
+</script>

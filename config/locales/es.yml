@@ -4,6 +4,7 @@ es:
       user:
         unauthenticated: "Debe identificarse primero"
         invalid: "El usuario especificado no existe o la contraseña es incorrecta"
+        not_found_in_database: "El usuario especificado no existe o la contraseña es incorrecta"
     sessions:
       user:
         signed_in: "Fue identificado correctamente"
@@ -215,7 +216,9 @@ es:
       spend:
         spend_date: Fecha
         titulo: Título
-        ammount: Monto
+        amount: Monto
+        tags_listing: Marcas
+        needs_confirmation: A confirmar
       purchase:
         market: "Mercado"
         purchase_date: "Fecha"

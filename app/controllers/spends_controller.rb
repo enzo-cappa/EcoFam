@@ -23,6 +23,7 @@ class SpendsController < ApplicationController
   # GET /spends/1.xml
   def show
     @spend = Spend.find(params[:id])
+    @tags = @spend.tags.where.not(name: "confirmar")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,7 @@ class SpendsController < ApplicationController
   # GET /spends/new.xml
   def new
     @spend = Spend.new
-
+    @tags = @spend.tags
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @spend }
@@ -59,7 +60,7 @@ class SpendsController < ApplicationController
     #FIXME: This is ugly....
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = Spend.new(params[:spend])
-    @spend.tags = tags
+    @spend.tags << tags
     respond_to do |format|
       if @spend.save
         format.html { redirect_to spends_path, :flash => { :notice => t("msg.creation.success")} }
