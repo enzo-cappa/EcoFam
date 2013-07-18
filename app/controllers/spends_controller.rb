@@ -46,7 +46,7 @@ class SpendsController < ApplicationController
   # GET /spends/1/edit
   def edit
     @spend = Spend.find(params[:id])
-    
+    @tags = @spend.tags_not_confirm
     respond_to do |format|
       format.html
       format.xml  { render :xml => @spend }
@@ -59,7 +59,7 @@ class SpendsController < ApplicationController
   def create
     #FIXME: This is ugly....
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
-    @spend = Spend.new(params[:spend])
+    @spend = Spend.new(spend_params)
     @spend.tags << tags
     respond_to do |format|
       if @spend.save
@@ -81,7 +81,7 @@ class SpendsController < ApplicationController
     @spend = Spend.find(params[:id])
     @spend.tags = tags
     respond_to do |format|
-      if @spend.update_attributes(params[:spend])
+      if @spend.update_attributes(spend_params)
         format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }
         format.xml  { head :ok }
         format.js
@@ -119,5 +119,10 @@ class SpendsController < ApplicationController
     respond_to do |format|
       format.json { render :json => {:balance => number_to_currency(sum)} }
     end
+  end
+
+  private
+  def spend_params
+    params.require(:spend).permit(:spend_date, :titulo, :amount, :needs_confirmation)
   end
 end

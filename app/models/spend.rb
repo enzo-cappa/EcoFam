@@ -1,10 +1,7 @@
 class Spend < ActiveRecord::Base
-  attr_accessible :spend_date, :titulo, :amount, :needs_confirmation
-  
   can_be_tagged
   acts_as_monthly
   before_save :clear_date_when_needs_confirmation
-
 
   validates :titulo, :presence => true
   validates :amount, :presence => true, :numericality => true
@@ -20,6 +17,9 @@ class Spend < ActiveRecord::Base
     self.tags.where(name: "confirmar").length > 0
   end
 
+  def tags_not_confirm
+    self.tags.where.not(name: "confirmar")
+  end
   private
   def clear_date_when_needs_confirmation
     if self.needs_confirmation

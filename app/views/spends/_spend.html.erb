@@ -1,5 +1,6 @@
-<tr id="<%= dom_id spend %>">
-	<td><%= l spend.spend_date, format: "%A %d" %></td>
+# -*- coding: utf-8 -*-
+<tr id="<%= dom_id spend %>" >
+  <td><%= l spend.spend_date, format: "%A %d" %></td>
 	<td><%= spend.titulo %></td>
 	<td><%= number_to_currency(spend.amount, :unit => "$") %></td>
 	<td><%= raw(to_tags_links_listing(spend.tags)) %></td>
@@ -8,7 +9,7 @@
 		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Acci&oacute;n <span class="caret"></span> </a>
 		  <ul class="dropdown-menu">
         <li><%= link_to 'Editar', edit_spend_path(spend), :remote => true %></li>
-			  <li><%= link_to 'Eliminar', spend, :confirm => '¿Está seguro?', :method => :delete, :remote => true %></li>
+                        <li><%= link_to 'Eliminar', spend, data: {confirm: '¿Está seguro?'}, :method => :delete, :remote => true %></li>
 		  </ul>
 	  </div>
   </td>
