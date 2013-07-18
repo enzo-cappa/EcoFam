@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/plataformatec/simple_form.git
-  revision: 87a9eec3d0311a40a7d964e1147f2887fb027105
-  specs:
-    simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0, < 4.1)
-      activemodel (>= 4.0.0, < 4.1)
-
-GIT
   remote: git://github.com/zherk/can_be_tagged.git
   revision: 5e168f348fd04b130e6442315c72db64d24d265c
   specs:
@@ -116,6 +108,9 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    simple_form (3.0.0.rc)
+      actionpack (>= 4.0.0.rc1, < 4.1)
+      activemodel (>= 4.0.0.rc1, < 4.1)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -160,7 +155,7 @@ DEPENDENCIES
   rails-erd
   rails_bootstrap_navbar
   sass-rails
-  simple_form!
+  simple_form (~> 3.0.0.rc)
   sqlite3
   therubyracer
   uglifier

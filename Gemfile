@@ -27,7 +27,7 @@ gem 'therubyracer'
 gem 'pg'
 
 gem 'nested_form'
-gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
+gem 'simple_form', "~> 3.0.0.rc"
 gem 'rails_bootstrap_navbar'
 
 # This version needs to be hardcoded for OpenShift compatability
