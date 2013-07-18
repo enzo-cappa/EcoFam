@@ -1,5 +1,5 @@
 class PurchaseLine < ActiveRecord::Base
-  attr_accessible :price_id, :purchase_id, :quantity, :product_attributes
+#  attr_accessible :price_id, :purchase_id, :quantity, :product_attributes
   belongs_to :product
   belongs_to :purchase
   belongs_to :brand
