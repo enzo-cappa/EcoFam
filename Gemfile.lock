@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/zherk/can_be_tagged.git
-  revision: 5e168f348fd04b130e6442315c72db64d24d265c
+  revision: 1464640acc070bcedb7e566d5dbcc965bc6a7359
   specs:
     can_be_tagged (0.0.2)
 

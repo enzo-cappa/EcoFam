@@ -18,7 +18,7 @@ group :test do
   gem "sqlite3"
 end
 
-gem 'can_be_tagged', :git => 'git://github.com/zherk/can_be_tagged.git'
+gem 'can_be_tagged', git: 'git://github.com/zherk/can_be_tagged.git'
 gem 'devise'
 gem 'jquery-rails'
 gem "less-rails-bootstrap", "~> 2.3.2"
