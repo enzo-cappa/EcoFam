@@ -4,7 +4,7 @@
   <%= f.input :titulo %>
   <%= f.input :amount %>
   <%= f.input :tags_listing, input_html: { value: to_tags_listing(@tags) } %>
-  <%= f.button :wrapped %>
+  <%= f.button :wrapped, disable_with: "Guardando..." %>
 <% end %> 
 <div id="errors"></div>
 
