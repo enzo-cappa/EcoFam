@@ -1,7 +1,12 @@
 <% if @spend.errors.any? %>
-$('#errors').html('<%= escape_javascript(render 'error' )%>')
+  $('#errors').html('<%= escape_javascript(render 'error' )%>')
 <% else %>
-$("#<%= dom_id(@spend) %>").replaceWith("<%= escape_javascript(render(:partial => @spend)) %>");
-$('#crud_modal').modal('toggle');
-$("#balance").trigger('spends_change');
+  if (<%= @spend.spend_date.year %> === period.year && <%= @spend.spend_date.month %> === period.month ) {
+    $("#<%= dom_id(@spend) %>").replaceWith("<%= escape_javascript(render(:partial => @spend)) %>");
+    $("#spends tbody tr").sort(spendsSorter).appendTo("#spends");
+  } else {
+     $("#<%= dom_id(@spend) %>").remove();
+  }
+  $('#crud_modal').modal('toggle');
+  $("#balance").trigger('spends_change');
 <% end %>

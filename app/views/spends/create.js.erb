@@ -4,6 +4,7 @@
   $('#crud_modal').modal('toggle');
   if (<%= @spend.spend_date.year %> === period.year && <%= @spend.spend_date.month %> === period.month ) {
     $('<%= escape_javascript(render(:partial => @spend))%>').appendTo('#spends');
-    $("#balance").trigger('spends_change');
+$("#balance").trigger('spends_change');
+$("#spends tbody tr").sort(spendsSorter).appendTo("#spends");
   }
 <% end %>
