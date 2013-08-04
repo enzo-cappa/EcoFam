@@ -2,10 +2,10 @@
 
 one:
   titulo: Income
-  ammount: 9.99
+  amount: 9.99
   spend_date: 2010-10-10
 
 two:
   titulo: Outcome
-  ammount: 9.99
+  amount: 9.99
   spend_date: 2010-10-10

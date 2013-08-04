@@ -9,98 +9,108 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704200013) do
+ActiveRecord::Schema.define(version: 20130804203039) do
 
-  create_table "brands", :force => true do |t|
+  create_table "brands", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "market_brands", :force => true do |t|
+  create_table "market_brands", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "markets", :force => true do |t|
+  create_table "markets", force: true do |t|
     t.string   "name"
     t.integer  "market_brand_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "measure_units", :force => true do |t|
+  create_table "measure_units", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "products", :force => true do |t|
+  create_table "periods", force: true do |t|
+    t.integer  "year"
+    t.integer  "month"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "periods", ["year", "month"], name: "index_periods_on_year_and_month", unique: true
+
+  create_table "products", force: true do |t|
     t.string   "name"
     t.integer  "measure_unit_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  create_table "purchase_lines", :force => true do |t|
+  create_table "purchase_lines", force: true do |t|
     t.integer  "product_id"
     t.integer  "purchase_id"
     t.decimal  "quantity"
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
     t.integer  "brand_id"
-    t.decimal  "price",       :precision => 10, :scale => 2, :default => 0.0
-    t.decimal  "subtotal",    :precision => 10, :scale => 2, :default => 0.0
+    t.decimal  "price",       precision: 10, scale: 2, default: 0.0
+    t.decimal  "subtotal",    precision: 10, scale: 2, default: 0.0
   end
 
-  create_table "purchases", :force => true do |t|
-    t.decimal  "total",         :precision => 10, :scale => 2, :default => 0.0
+  create_table "purchases", force: true do |t|
+    t.decimal  "total",         precision: 10, scale: 2, default: 0.0
     t.integer  "market_id"
     t.date     "purchase_date"
-    t.datetime "created_at",                                                    :null => false
-    t.datetime "updated_at",                                                    :null => false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
-  create_table "spends", :force => true do |t|
+  create_table "spends", force: true do |t|
     t.string   "titulo"
     t.decimal  "amount"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.date     "spend_date"
+    t.integer  "period_id"
   end
 
-  create_table "tag_lines", :force => true do |t|
+  create_table "tag_lines", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "tags", :force => true do |t|
+  create_table "tags", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",               :default => "", :null => false
-    t.string   "encrypted_password",  :default => "", :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
-  create_table "varietes", :force => true do |t|
+  create_table "varietes", force: true do |t|
     t.string   "name"
     t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

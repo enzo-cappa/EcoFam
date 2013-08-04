@@ -50,4 +50,5 @@ class SpendsControllerTest < ActionController::TestCase
 
     assert_redirected_to spends_path
   end
+
 end

@@ -4,18 +4,17 @@ class SpendsController < ApplicationController
   # GET /spends
   # GET /spends.xml
   def index
-    @spends = Spend.at_month @period_date
-    
+    @spends = @period.spends
+
     if params[:with_tag]
       @tag = params[:with_tag]
       @spends = @spends.tagged_as(@tag)
     end
 
     @sum = @spends.sum(:amount)
-    
+
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @spends }
     end
   end
 
@@ -107,15 +106,14 @@ class SpendsController < ApplicationController
   end
   
   def balance
-  
     year = params[:year]
     month = params[:month]
-    
-    period_date = DateTime.new(year.to_i, month.to_i, 1)    
+
+    period_date = DateTime.new(year.to_i, month.to_i, 1)
     spends = Spend.at_month period_date
 
     sum = spends.sum(:amount)
-    
+
     respond_to do |format|
       format.json { render :json => {:balance => number_to_currency(sum)} }
     end

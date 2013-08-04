@@ -1,10 +1,22 @@
 class Spend < ActiveRecord::Base
   can_be_tagged
-  acts_as_monthly
+
+  belongs_to :period
+
   before_save :clear_date_when_needs_confirmation
 
-  validates :titulo, :presence => true
-  validates :amount, :presence => true, :numericality => true
+  validates :titulo, presence: true
+  validates :amount, presence: true, numericality: true
+  validate :period_id, presence: true 
+
+  def period_with_default
+    if !period_without_default
+      self.period = Period.where(month: self.spend_date.month, year: self.spend_date.year).first_or_create
+    end
+    period_without_default
+  end
+
+  alias_method_chain :period, :default
 
   def needs_confirmation=(needs_confirmation)
     if "1" == needs_confirmation

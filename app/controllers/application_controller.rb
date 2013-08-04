@@ -4,16 +4,12 @@ class ApplicationController < ActionController::Base
 
   def by_period
     if params[:year] && params[:month]
-      year = params[:year]
-      month = params[:month]
+      @period = Period.where(month: params[:month], year: params[:year]).first_or_create
+    else
+      @period = Period.actual
     end
 
-    year = Time.now.year unless year
-    month = Time.now.month unless month
-
-    @period_date = DateTime.new(year.to_i, month.to_i, 1)
-
-    @prev_period = @period_date - 1.month
-    @next_period = @period_date + 1.month
+    @prev_period = @period.prev
+    @next_period = @period.next
   end
 end

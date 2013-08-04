@@ -1,8 +1,8 @@
 <div class="page-header">
 	<h1>Gastos</h1>
-	<h3><%= l @period_date, :format => '%B de %Y' %></h3>
+	<h3><%= I18n.t("date.month_names")[@period.month] %> de <%= @period.year %></h3>
 	<%if @tag%>
-	<h3>Marcado como: <%= @tag %> <%= link_to 'X', history_url("spend", :year=> @period_date.year, :month => @period_date.month) %></h3>
+	<h3>Marcado como: <%= @tag %> <%= link_to 'X', history_url("spend", :year=> @period.year, :month => @period.month) %></h3>
 	<%end%>
 </div>
 <div class="modal hide" id="crud_modal"></div>
@@ -31,12 +31,12 @@
 <%= render 'monthly_navbar', model_name: 'spend' %>
 
 <script type="text/javascript">
-  var period= { year : <%= @period_date.year %>,
-                month: <%= @period_date.month %>};
+  var period= { year : <%= @period.year %>,
+                month: <%= @period.month %>};
   $(document).ready(function(){
     jQuery(function($) {
       $("#balance").bind('spends_change', function(){
-	$.getJSON("<%= balance_url(:year=> @period_date.year, :month => @period_date.month) %>", function(data) {
+	$.getJSON("<%= balance_url(:year=> @period.year, :month => @period.month) %>", function(data) {
 	  $("#balance").html(data.balance);
 	});
       });
