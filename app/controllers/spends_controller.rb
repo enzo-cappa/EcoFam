@@ -1,6 +1,6 @@
 class SpendsController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  before_filter :by_period, only: :index
+  before_filter :by_period, only: [:index, :balance]
   # GET /spends
   # GET /spends.xml
   def index
@@ -10,8 +10,9 @@ class SpendsController < ApplicationController
       @tag = params[:with_tag]
       @spends = @spends.tagged_as(@tag)
     end
+    @sum = @spends.inject(0){|acum, spend| acum + spend.amount}
 
-    @sum = @spends.sum(:amount)
+    puts @sum
 
     respond_to do |format|
       format.html # index.html.erb
@@ -106,13 +107,7 @@ class SpendsController < ApplicationController
   end
   
   def balance
-    year = params[:year]
-    month = params[:month]
-
-    period_date = DateTime.new(year.to_i, month.to_i, 1)
-    spends = Spend.at_month period_date
-
-    sum = spends.sum(:amount)
+    sum = @period.spends.sum(:amount)
 
     respond_to do |format|
       format.json { render :json => {:balance => number_to_currency(sum)} }
