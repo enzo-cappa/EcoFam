@@ -107,8 +107,8 @@ class SpendsController < ApplicationController
   end
   
   def balance
-    sum = @period.spends.sum(:amount)
-
+    sum = @period..inject(0){|acum, spend| acum + spend.amount}
+    
     respond_to do |format|
       format.json { render :json => {:balance => number_to_currency(sum)} }
     end
