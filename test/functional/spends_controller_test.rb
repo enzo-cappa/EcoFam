@@ -51,4 +51,8 @@ class SpendsControllerTest < ActionController::TestCase
     assert_redirected_to spends_path
   end
 
+  test "should get balance" do
+    get :balance, {month: 1, year: 2012, format: 'json'}
+    assert_response :success
+  end
 end

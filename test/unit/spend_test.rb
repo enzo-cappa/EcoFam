@@ -26,4 +26,13 @@ class SpendTest < ActiveSupport::TestCase
     assert spend.save
     assert spend.period
   end
+
+  test "should calculate balance" do
+    period = periods :one
+    spend = spends :one
+    spend.period = period
+    spend.amount = 10
+    spend.save
+    assert_equal Spend.balance(period.spends), 10
+  end
 end

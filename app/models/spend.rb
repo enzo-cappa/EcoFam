@@ -26,9 +26,14 @@ class Spend < ActiveRecord::Base
     self.tags.where.not(name: "confirmar")
   end
   private
+  
   def clear_date_when_needs_confirmation
     if self.needs_confirmation
       self.spend_date = self.spend_date.end_of_month
     end
+  end
+
+  def self.balance(spends)
+    spends.inject(0){|acum, spend| acum + spend.amount}
   end
 end

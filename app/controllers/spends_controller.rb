@@ -10,7 +10,8 @@ class SpendsController < ApplicationController
       @tag = params[:with_tag]
       @spends = @spends.tagged_as(@tag)
     end
-    @sum = @spends.inject(0){|acum, spend| acum + spend.amount}
+    
+    @sum = Spend.balance(@spends)
 
     puts @sum
 
@@ -107,7 +108,14 @@ class SpendsController < ApplicationController
   end
   
   def balance
-    sum = @period..inject(0){|acum, spend| acum + spend.amount}
+    spends = @period.spends
+    
+    if params[:with_tag]
+      tag = params[:with_tag]
+      spends = spends.tagged_as(tag)
+    end
+    
+    sum = Spend.balance(spends)
     
     respond_to do |format|
       format.json { render :json => {:balance => number_to_currency(sum)} }
