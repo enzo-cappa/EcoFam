@@ -23,8 +23,7 @@ class SpendTest < ActiveSupport::TestCase
 
   test "should have a period" do
     spend = Spend.new(:titulo => "nada", :amount => 1, :spend_date => Time.now)
-    assert spend.save
-    assert spend.period
+    assert !spend.save
   end
 
   test "should calculate balance" do

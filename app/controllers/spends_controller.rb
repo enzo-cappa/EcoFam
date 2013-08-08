@@ -61,6 +61,8 @@ class SpendsController < ApplicationController
     #FIXME: This is ugly....
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = Spend.new(spend_params)
+    @period = Period.where(month: @spend.spend_date.month, year: @spend.spend_date.year).first
+    @spend.period = @period
     @spend.tags << tags
     respond_to do |format|
       if @spend.save

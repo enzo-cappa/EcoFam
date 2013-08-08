@@ -7,3 +7,7 @@ one:
 two:
   year: 2
   month: 2
+
+ten:
+  year: 2010
+  month: 10

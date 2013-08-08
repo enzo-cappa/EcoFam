@@ -7,7 +7,7 @@ class Spend < ActiveRecord::Base
 
   validates :titulo, presence: true
   validates :amount, presence: true, numericality: true
-  validate :period_id, presence: true
+  validates :period_id, presence: true
 
   default_scope -> {order("#{Spend.table_name}.spend_date ASC, #{Spend.table_name}.created_at ASC" )}
 
