@@ -61,8 +61,6 @@ class SpendsController < ApplicationController
     #FIXME: This is ugly....
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = Spend.new(spend_params)
-    @period = Period.where(month: @spend.spend_date.month, year: @spend.spend_date.year).first
-    @spend.period = @period
     @spend.tags << tags
     respond_to do |format|
       if @spend.save
@@ -85,12 +83,10 @@ class SpendsController < ApplicationController
     @spend.tags = tags
     respond_to do |format|
       if @spend.update_attributes(spend_params)
-        format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }
-        format.xml  { head :ok }
+        format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }        
         format.js
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @spend.errors, :status => :unprocessable_entity }
         format.js
       end
     end

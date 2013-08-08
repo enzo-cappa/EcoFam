@@ -11,6 +11,13 @@ class Spend < ActiveRecord::Base
 
   default_scope -> {order("#{Spend.table_name}.spend_date ASC, #{Spend.table_name}.created_at ASC" )}
 
+  def spend_date=(date)
+    write_attribute :spend_date, date
+    spend_date = read_attribute :spend_date
+    period = Period.where(month: spend_date.month, year: spend_date.year).first
+    self.period = period
+  end
+  
   def needs_confirmation=(needs_confirmation)
     if "1" == needs_confirmation
       #FIXME: Constant string
