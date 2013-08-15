@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = Purchase.at_month @period_date
+    @purchases = @period.purchases
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,7 +33,6 @@ class PurchasesController < ApplicationController
     @products = Product.all.collect(&:name)
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @purchase }
       format.js 
     end
   end
@@ -41,21 +40,24 @@ class PurchasesController < ApplicationController
   # GET /purchases/1/edit
   def edit
     @purchase = Purchase.find(params[:id])
+    @markets = Market.all.collect(&:name)
+    @products = Product.all.collect(&:name)
+    respond_to do |format|
+      format.html 
+      format.js 
+    end
   end
 
   # POST /purchases
   # POST /purchases.json
   def create
-    @purchase = Purchase.new(params[:purchase])
-
+    @purchase = Purchase.new(purchase_params)
     respond_to do |format|
       if @purchase.save
         format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
-        format.json { render json: @purchase, status: :created, location: @purchase }
         format.js
       else
         format.html { render action: "new" }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
         format.js
       end
     end
@@ -67,12 +69,12 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
 
     respond_to do |format|
-      if @purchase.update_attributes(params[:purchase])
+      if @purchase.update_attributes(purchase_params)
         format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
-        format.json { head :no_content }
-      else
+        format.js
+        else
         format.html { render action: "edit" }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -87,5 +89,10 @@ class PurchasesController < ApplicationController
       format.html { redirect_to purchases_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def purchase_params
+    params.require(:purchase).permit(:purchase_date, purchase_lines_attributes: [:quantity, :price, product_attributes: [:name]], market_attributes: [:name])
   end
 end

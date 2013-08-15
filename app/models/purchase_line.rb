@@ -1,10 +1,9 @@
 class PurchaseLine < ActiveRecord::Base
-#  attr_accessible :price_id, :purchase_id, :quantity, :product_attributes
   belongs_to :product
   belongs_to :purchase
   belongs_to :brand
   accepts_nested_attributes_for :product
-  before_save :update_subtotal
+  before_validation :update_subtotal
 
   def product_with_default
     product_without_default || Product.new
@@ -16,8 +15,18 @@ class PurchaseLine < ActiveRecord::Base
 
   alias_method_chain :product, :default
 
+  def price=(price)
+    write_attribute :price, price
+    update_subtotal    
+  end
+
+  def quantity=(quantity)
+    write_attribute :quantity, quantity
+    update_subtotal
+  end
+  
   private
   def update_subtotal
-    self.subtotal = self.price * self.quantity
+    write_attribute :subtotal, read_attribute(:price) * read_attribute(:quantity)
   end
 end

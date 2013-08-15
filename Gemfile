@@ -35,3 +35,4 @@ gem 'rails_bootstrap_navbar'
 
 # This needs to be installed so we can run Rails console on OpenShift directly
 gem 'minitest'
+gem 'factory_girl_rails'

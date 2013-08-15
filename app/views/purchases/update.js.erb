@@ -3,7 +3,10 @@ $('#errors').html('<%= escape_javascript(render 'error', model: @purchase )%>')
 <% else %>
   $('#crud_modal').modal('toggle');
   if (<%= @purchase.purchase_date.year %> === period.year && <%= @purchase.purchase_date.month %> === period.month ) {
-    $('<%= escape_javascript(render(:partial => @purchase))%>').appendTo('#purchases');
+    $("#<%= dom_id(@purchase) %>").replaceWith("<%= escape_javascript(render(:partial => @purchase)) %>");
     $("#purchases tbody tr").sort(spendsSorter).appendTo("#purchases");
-  }
+  } else {
+     $("#<%= dom_id(@purchase) %>").remove();
+  }  
 <% end %>
+

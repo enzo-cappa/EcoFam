@@ -1,5 +1,5 @@
 <tr id="<%= dom_id purchase %>">
-	<td><%= l purchase.purchase_date %></td>
+	<td><%= l purchase.purchase_date, format: "%A %d" %></td>
 	<td><%= purchase.market.name %></td>
 	<td><%= number_to_currency(purchase.total, :unit => "$") %></td>
 	<td>

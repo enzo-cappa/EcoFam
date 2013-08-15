@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+  
   setup do
+    @user = users(:one)
+    sign_in :user, @user
     @product = products(:one)
   end
 
@@ -18,7 +22,7 @@ class ProductsControllerTest < ActionController::TestCase
 
   test "should create product" do
     assert_difference('Product.count') do
-      post :create, product: {  }
+      post :create, product: {name: "test"}
     end
 
     assert_redirected_to product_path(assigns(:product))
@@ -35,7 +39,7 @@ class ProductsControllerTest < ActionController::TestCase
   end
 
   test "should update product" do
-    put :update, id: @product, product: {  }
+    put :update, id: @product, product: {name: "the new name"}
     assert_redirected_to product_path(assigns(:product))
   end
 

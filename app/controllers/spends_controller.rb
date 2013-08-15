@@ -13,8 +13,6 @@ class SpendsController < ApplicationController
     
     @sum = Spend.balance(@spends)
 
-    puts @sum
-
     respond_to do |format|
       format.html # index.html.erb
     end

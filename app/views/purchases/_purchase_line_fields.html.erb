@@ -1,17 +1,17 @@
 <div class="row product-line">
   <div class="span2">
-    <%= f.text_field :quantity, label: false, control_group: false, placeholder: "Cantidad", class: "input-block-level" %>
+    <%= f.text_field :quantity, label: false, control_group: false, placeholder: "Cantidad", class: "input-block-level", autocomplete: "off" %>
   </div>
   <div class="span4">
     <%= f.simple_fields_for :product do |product_form| %>
-      <%= product_form.text_field :name, label: false, control_group: false, placeholder: "Producto", class: "input-block-level", "data-provide" => "typeahead", "data-source" => @products.to_json %>
+      <%= product_form.text_field :name, label: false, control_group: false, placeholder: "Producto", class: "input-block-level", "data-provide" => "typeahead", "data-source" => @products.to_json, autocomplete: "off" %>
     <% end %>
   </div>
   <div class="span3">
-    <%= f.text_field :brand, label: false, control_group: false, placeholder: "Marca", class: "input-block-level", input_html: { "data-provide" => "typeahead", "data-source" => "javascript:getProducts()" } %>
+    <%= f.text_field :brand, label: false, control_group: false, placeholder: "Marca", class: "input-block-level", input_html: { "data-provide" => "typeahead", "data-source" => "javascript:getProducts()", autocomplete: "off" } %>
   </div>  
   <div class="span2">
-    <%= f.text_field :price, label: false, control_group: false, placeholder: "Precio", class: "input-block-level" %>
+    <%= f.text_field :price, label: false, control_group: false, placeholder: "Precio", class: "input-block-level", autocomplete: "off" %>
   </div>
   <div class="span1">
     <%= f.link_to_remove "-", class: "btn btn-danger"  %>

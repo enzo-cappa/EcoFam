@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class PurchaseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+#  test "should not create a purchasethe truth" do
+#    assert true
+#  end
 end

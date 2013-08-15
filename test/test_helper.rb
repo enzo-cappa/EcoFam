@@ -10,4 +10,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def create_default_periods
+    for year in 2010..2020
+      for month in 1..12
+        Period.where({year: year, month: month}).first_or_create
+      end
+    end
+  end
 end

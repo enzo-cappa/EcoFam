@@ -18,9 +18,4 @@ class ProductTest < ActiveSupport::TestCase
     assert !product.save
   end
 
-  test "shouldn't create a product with no brand" do
-    product = products(:one)
-    product.brand = nil
-    assert !product.save
-  end
 end

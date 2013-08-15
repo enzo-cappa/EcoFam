@@ -7,6 +7,7 @@ class SpendsControllerTest < ActionController::TestCase
     @user = users(:one)
     sign_in :user, @user
     @spend = spends(:one)
+    create_default_periods
   end
 
   test "should get index" do

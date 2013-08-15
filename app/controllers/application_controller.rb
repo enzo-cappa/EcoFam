@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def by_period
     if params[:year] && params[:month]
-      @period = Period.where(month: params[:month], year: params[:year]).first_or_create
+      @period = Period.where(month: params[:month], year: params[:year]).first!
     else
       @period = Period.actual
     end
