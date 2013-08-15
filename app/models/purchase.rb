@@ -4,15 +4,17 @@ class Purchase < ActiveRecord::Base
   has_many :products, through: :purchase_line
   has_many :purchase_lines
   belongs_to :market
-  accepts_nested_attributes_for :purchase_lines
+  accepts_nested_attributes_for :purchase_lines, allow_destroy: true
   validates :purchase_lines, length: {minimum: 1}
   validates :total, numericality: true
   validates :market_id, presence: true
   validates :period_id, presence: true
   before_validation :update_total
 
+  default_scope -> {order("#{Purchase.table_name}.purchase_date ASC, #{Purchase.table_name}.created_at ASC" )}
+
   def market_attributes=(market)
-    self.market = Market.where(:name => market[:name]).first_or_create()
+    self.market = Market.where(:name => market[:name]).first_or_create
   end
 
   def purchase_date=(date)

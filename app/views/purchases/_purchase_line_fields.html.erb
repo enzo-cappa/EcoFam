@@ -1,4 +1,5 @@
 <div class="row product-line">
+  <%= f.hidden_field :id %>
   <div class="span2">
     <%= f.text_field :quantity, label: false, control_group: false, placeholder: "Cantidad", class: "input-block-level", autocomplete: "off" %>
   </div>
@@ -8,7 +9,9 @@
     <% end %>
   </div>
   <div class="span3">
-    <%= f.text_field :brand, label: false, control_group: false, placeholder: "Marca", class: "input-block-level", input_html: { "data-provide" => "typeahead", "data-source" => "javascript:getProducts()", autocomplete: "off" } %>
+    <%= f.simple_fields_for :brand do |brand_form| %>
+      <%= brand_form.text_field :name, label: false, control_group: false, placeholder: "Marca", class: "input-block-level", "data-provide" => "typeahead", "data-source" => @brands.to_json, autocomplete: "off" %>
+    <% end %>
   </div>  
   <div class="span2">
     <%= f.text_field :price, label: false, control_group: false, placeholder: "Precio", class: "input-block-level", autocomplete: "off" %>

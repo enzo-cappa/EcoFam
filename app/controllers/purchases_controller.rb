@@ -31,6 +31,7 @@ class PurchasesController < ApplicationController
     @purchase.market = Market.new
     @markets = Market.all.collect(&:name)
     @products = Product.all.collect(&:name)
+    @brands = Brand.all.collect(&:name)
     respond_to do |format|
       format.html # new.html.erb
       format.js 
@@ -42,6 +43,7 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.find(params[:id])
     @markets = Market.all.collect(&:name)
     @products = Product.all.collect(&:name)
+    @brands = Brand.all.collect(&:name)
     respond_to do |format|
       format.html 
       format.js 
@@ -93,6 +95,6 @@ class PurchasesController < ApplicationController
 
   private
   def purchase_params
-    params.require(:purchase).permit(:purchase_date, purchase_lines_attributes: [:quantity, :price, product_attributes: [:name]], market_attributes: [:name])
+    params.require(:purchase).permit(:id, :purchase_date, purchase_lines_attributes: [:id, :_destroy, :quantity, :price, product_attributes: [:name], brand_attributes: [:name]], market_attributes: [:name])
   end
 end
