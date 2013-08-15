@@ -40,7 +40,7 @@ class PurchasesController < ApplicationController
 
   # GET /purchases/1/edit
   def edit
-    @purchase = Purchase.find(params[:id])
+    @purchase = Purchase.joins(:market, purchase_lines: [:product, :brand]).find(params[:id])
     @markets = Market.all.collect(&:name)
     @products = Product.all.collect(&:name)
     @brands = Brand.all.collect(&:name)

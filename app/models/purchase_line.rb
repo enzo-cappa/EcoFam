@@ -2,6 +2,7 @@ class PurchaseLine < ActiveRecord::Base
   belongs_to :product
   belongs_to :purchase
   belongs_to :brand
+  validates :brand_id, presence: true
   before_validation :update_subtotal
 
   def product_with_default
