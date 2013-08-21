@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.order(:name).page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +18,21 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
+    end
+  end
+
+  def prices
+    @markets = Market.includes(purchase_lines: :product).where("purchase_lines.product_id = ?", params[:id]).references(:purchase_lines).where(['purchase_date > ?', Time.now - 6.months]).order('purchase_date ASC')
+    @data_by_market = Hash.new([])
+
+    for market in @markets
+      market.purchase_lines.each do |line|
+        @data_by_market[market.id] << [line.purchase.purchase_date, line.price]
+      end
+    end
+    
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -66,18 +81,6 @@ class ProductsController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /products/1
-  # DELETE /products/1.json
-  def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to products_url }
-      format.json { head :no_content }
     end
   end
 

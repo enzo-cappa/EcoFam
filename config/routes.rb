@@ -9,6 +9,6 @@ EcoFamily::Application.routes.draw do
   resources :purchases
 
   get 'periods/:year/:month/spends' => 'spends#index', as: :spend_history
-  
+  get 'product/:id/prices' => 'products#prices', as: :product_prices
   root :to => "spends#index"
 end

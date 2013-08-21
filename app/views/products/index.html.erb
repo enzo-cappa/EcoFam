@@ -1,21 +1,18 @@
-<h1>Listing products</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @products.each do |product| %>
-  <tr>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<div class="page-header">
+  <h1>Productos</h1>
+</div>
+<div class="modal hide crud-modal" id="modal"></div>
+<table class="table table-stiped table-condensed" id="products">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th/>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'product', collection: @products %>
+  </tbody>
 </table>
 
-<br />
-
+<%= paginate @products %>
 <%= link_to 'New Product', new_product_path %>
