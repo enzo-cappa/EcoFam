@@ -24,7 +24,7 @@ $('#chart').highcharts({
            data: [
          <% @data_by_market[name].each_with_index do |row, i| %>
            <%= "," unless i == 0%>
-             [Date.UTC(<%= row[0].year %>, <%= row[0].month %>, <%= row[0].day %>), <%= row[1] %>]
+             [Date.UTC(<%= row[0].year %>, <%= row[0].month - 1%>, <%= row[0].day %>), <%= row[1] %>]
            <% end %>
            ]
          }
