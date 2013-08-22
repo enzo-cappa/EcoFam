@@ -1,19 +1,11 @@
-var data = [];
-<%  @markets.each do |market| %>
-  data[<%=market.id%>] = [];
-  <% for row in @data_by_market[market.id] %>
-data[<%= market.id %>].push([Date.UTC(<%= row[0].year %>, <%= row[0].month %>, <%= row[0].day %>), <%= row[1] %>]);
-  <% end %>
-<% end %>
-
-
 $('#chart').highcharts({
   title: {
     text: 'Precios en los últimos 6 meses',
     x: -20 //center
   },
   tooltip: {
-    valueSuffix: '$'
+    valuePrefix: '$ ',
+    valueDecimals: 2
   },
   legend: {
     layout: 'vertical',
@@ -25,13 +17,18 @@ $('#chart').highcharts({
     type: 'datetime'
   },
   series: [
-      <% @markets.each_with_index do |market, i| %>
+      <% @data_by_market.keys.each_with_index do |name, i| %>
          <%= "," unless i == 0%>
          {
-           name: "<%= market.name %>",
-           data: data[<%= market.id %>]
-         }         
+           name: "<%= name %>",
+           data: [
+         <% @data_by_market[name].each_with_index do |row, i| %>
+           <%= "," unless i == 0%>
+             [Date.UTC(<%= row[0].year %>, <%= row[0].month %>, <%= row[0].day %>), <%= row[1] %>]
+           <% end %>
+           ]
+         }
       <% end %>
-         ]
+  ]
 });
 

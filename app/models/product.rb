@@ -5,9 +5,4 @@ class Product < ActiveRecord::Base
   belongs_to :measure_unit
 
   validates :name, :presence => true, uniqueness: true
-
-  def last_price
-    purchase_lines.joins(:purchase).order("purchases.purchase_date DESC").first.price
-  end
-
 end

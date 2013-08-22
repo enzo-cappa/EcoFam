@@ -1,9 +1,9 @@
 class Purchase < ActiveRecord::Base
   belongs_to :period
-  
+  belongs_to :market, inverse_of: :purchases
   has_many :products, through: :purchase_line
-  has_many :purchase_lines
-  belongs_to :market
+  has_many :purchase_lines, inverse_of: :purchase
+
   accepts_nested_attributes_for :purchase_lines, allow_destroy: true
   validates :purchase_lines, length: {minimum: 1}
   validates :total, numericality: true
@@ -19,7 +19,7 @@ class Purchase < ActiveRecord::Base
 
   def purchase_date=(date)
     write_attribute :purchase_date, date
-    puchase_date = read_attribute :purchase_date
+    purchase_date = read_attribute :purchase_date
     period = Period.where(month: purchase_date.month, year: purchase_date.year).first
     self.period = period
   end

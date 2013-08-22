@@ -22,15 +22,15 @@ class ProductsController < ApplicationController
   end
 
   def prices
-    @markets = Market.includes(purchase_lines: :product).where("purchase_lines.product_id = ?", params[:id]).references(:purchase_lines).where(['purchase_date > ?', Time.now - 6.months]).order('purchase_date ASC')
-    @data_by_market = Hash.new([])
+    @data_by_market = {}
+    purchases = Purchase.joins(:purchase_lines).where("purchase_lines.product_id = ?", params[:id]).where(['purchase_date > ?', Time.now - 6.months]).uniq
 
-    for market in @markets
-      market.purchase_lines.each do |line|
-        @data_by_market[market.id] << [line.purchase.purchase_date, line.price]
-      end
+    for purchase in purchases
+      @data_by_market[purchase.market.name] = [] if @data_by_market[purchase.market.name].nil?
+      purchase_line = purchase.purchase_lines.where(product_id:  params[:id]).first
+      @data_by_market[purchase.market.name] << [purchase.purchase_date, purchase_line.price]
     end
-    
+
     respond_to do |format|
       format.js
     end
