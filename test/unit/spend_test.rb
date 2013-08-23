@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class SpendTest < ActiveSupport::TestCase
+  include FactoryGirl::Syntax::Methods
+  
   test "should not create a spend without amount" do
     spend = Spend.new(:titulo => "Sin monto", :spend_date => Time.now)
     assert !spend.save
@@ -27,7 +29,7 @@ class SpendTest < ActiveSupport::TestCase
     Period.where(month: time_one.month, year: time_one.year).first_or_create
     Period.where(month: time_two.month, year: time_two.year).first_or_create
     
-    spend = Spend.create(:titulo => "nada", :amount => 1, :spend_date => time_one)
+    spend = build :spend, :spend_date => time_one
     spend.period = periods(:one)
     assert spend.save
     period_one = spend.period
@@ -41,7 +43,7 @@ class SpendTest < ActiveSupport::TestCase
 
   test "should calculate balance" do
     period = periods :one
-    spend = spends :one
+    spend = build :spend
     spend.period = period
     spend.amount = 10
     spend.save

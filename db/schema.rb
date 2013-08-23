@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813191959) do
+ActiveRecord::Schema.define(version: 20130823142402) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -77,10 +77,12 @@ ActiveRecord::Schema.define(version: 20130813191959) do
   create_table "spends", force: true do |t|
     t.string   "titulo"
     t.decimal  "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.date     "spend_date"
     t.integer  "period_id"
+    t.integer  "user_group_id"
+    t.integer  "user_id"
   end
 
   create_table "tag_lines", force: true do |t|
@@ -97,12 +99,19 @@ ActiveRecord::Schema.define(version: 20130813191959) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",               default: "", null: false
     t.string   "encrypted_password",  default: "", null: false
     t.datetime "remember_created_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.integer  "user_group_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

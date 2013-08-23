@@ -2,12 +2,13 @@ require 'test_helper'
 
 class SpendsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
+  include FactoryGirl::Syntax::Methods
   
   setup do
-    @user = users(:one)
+    @user = create :user
     sign_in :user, @user
-    @spend = spends(:one)
     create_default_periods
+    @spend = create :spend, user: @user
   end
 
   test "should get index" do

@@ -4,7 +4,7 @@ class SpendsController < ApplicationController
   # GET /spends
   # GET /spends.xml
   def index
-    @spends = @period.spends
+    @spends = current_user.spends.where(period_id: @period.id)
 
     if params[:with_tag]
       @tag = params[:with_tag]
@@ -21,7 +21,7 @@ class SpendsController < ApplicationController
   # GET /spends/1
   # GET /spends/1.xml
   def show
-    @spend = Spend.find(params[:id])
+    @spend = current_user.spends.find(params[:id])
     @tags = @spend.tags.where.not(name: "confirmar")
 
     respond_to do |format|
@@ -59,6 +59,8 @@ class SpendsController < ApplicationController
     #FIXME: This is ugly....
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = Spend.new(spend_params)
+    @spend.user = current_user
+    @spend.user_group = current_user.user_group
     @spend.tags << tags
     respond_to do |format|
       if @spend.save
@@ -77,7 +79,7 @@ class SpendsController < ApplicationController
   # PUT /spends/1.xml
   def update
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
-    @spend = Spend.find(params[:id])
+    @spend = current_user.spends.find(params[:id])
     @spend.tags = tags
     respond_to do |format|
       if @spend.update_attributes(spend_params)
@@ -93,7 +95,7 @@ class SpendsController < ApplicationController
   # DELETE /spends/1
   # DELETE /spends/1.xml
   def destroy
-    @spend = Spend.find(params[:id])
+    @spend = current_user.spends.find(params[:id])
     @spend.destroy
 
     respond_to do |format|
@@ -104,7 +106,7 @@ class SpendsController < ApplicationController
   end
   
   def balance
-    spends = @period.spends
+    spends = current_user.spends.where(period_id: @period.id)
     
     if params[:with_tag]
       tag = params[:with_tag]

@@ -2,12 +2,13 @@ require 'test_helper'
 
 class PurchasesControllerTest < ActionController::TestCase
   include Devise::TestHelpers
+  include FactoryGirl::Syntax::Methods
   
   setup do
-    @user = users(:one)
+    @user = create :user
     sign_in :user, @user
-    @purchase = purchases(:one)
     create_default_periods
+    @purchase = create :purchase
   end
 
   test "should get index" do
@@ -23,7 +24,7 @@ class PurchasesControllerTest < ActionController::TestCase
 
   test "should create purchase" do
     assert_difference('Purchase.count') do
-      post :create, purchase: {purchase_date: Time.now.to_s, market_attributes: {name: "the market"}, purchase_lines_attributes: { "0" => {price: 10.to_s, quantity: 10.to_s, product_attributes: {name: "the product"}}}}
+      post :create, purchase: {purchase_date: Time.now.to_s, market_attributes: {name: "the market"}, purchase_lines_attributes: { "0" => {price: 10.to_s, quantity: 10.to_s, product_attributes: {name: "the product"}, brand_attributes: {name: "The Brand"} }}}
     end
 
     assert_redirected_to purchase_path(assigns(:purchase))

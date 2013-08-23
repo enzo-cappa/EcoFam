@@ -1,13 +1,17 @@
 class Spend < ActiveRecord::Base
   can_be_tagged
 
-  belongs_to :period
+  belongs_to :period, inverse_of: :spends
+  belongs_to :user_group, inverse_of: :spends
+  belongs_to :user, inverse_of: :spends
 
   before_save :clear_date_when_needs_confirmation
 
   validates :titulo, presence: true
   validates :amount, presence: true, numericality: true
   validates :period_id, presence: true
+  validates :user_id, presence: true
+  validates :user_group_id, presence: true
 
   default_scope -> {order("#{Spend.table_name}.spend_date ASC, #{Spend.table_name}.created_at ASC" )}
 

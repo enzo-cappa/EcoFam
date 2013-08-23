@@ -1,19 +1,16 @@
 require 'test_helper'
 
 class ProductTest < ActiveSupport::TestCase
-  fixtures :products
-  # test "the truth" do
-  #   assert true
-  # end
+  include FactoryGirl::Syntax::Methods
 
   test "shouldn't create a product with nil name" do
-    product = products(:one)
+    product = build :product
     product.name = nil
     assert !product.save
   end
 
   test "shouldn't create a product with empty name" do
-    product = products(:one)
+    product = build :product
     product.name = ''
     assert !product.save
   end

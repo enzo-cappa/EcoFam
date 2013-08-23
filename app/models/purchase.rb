@@ -26,12 +26,8 @@ class Purchase < ActiveRecord::Base
   
   private
   def update_total
-    puts "updating total"
     return if self.purchase_lines.length == 0
-    puts "total updated"
-    #total =  self.purchase_lines.map(&:subtotal).inject(&:+)
     total = self.purchase_lines.inject(0){|acum, line| acum + line.subtotal}
-    puts "Total: #{total}"
     self.total =  total
   end
 end

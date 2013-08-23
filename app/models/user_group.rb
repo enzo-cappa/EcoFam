@@ -1,0 +1,4 @@
+class UserGroup < ActiveRecord::Base
+  has_many :users, inverse_of: :user_group
+  has_many :spends, inverse_of: :user_group
+end

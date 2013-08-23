@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  total: 9.99
-  market_id: 1
-
-two:
-  total: 9.99
-  market_id: 1

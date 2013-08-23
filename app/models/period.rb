@@ -1,5 +1,5 @@
 class Period < ActiveRecord::Base
-  has_many :spends
+  has_many :spends, inverse_of: :period
   has_many :purchases
   
   validates :year, uniqueness: { scope: :month }, numericality: {only_integer: true, greater_than: 0}

@@ -2,11 +2,12 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
   include Devise::TestHelpers
+  include FactoryGirl::Syntax::Methods
   
   setup do
-    @user = users(:one)
+    @user = create :user
     sign_in :user, @user
-    @product = products(:one)
+    @product = create :product
   end
 
   test "should get index" do
@@ -41,13 +42,5 @@ class ProductsControllerTest < ActionController::TestCase
   test "should update product" do
     put :update, id: @product, product: {name: "the new name"}
     assert_redirected_to product_path(assigns(:product))
-  end
-
-  test "should destroy product" do
-    assert_difference('Product.count', -1) do
-      delete :destroy, id: @product
-    end
-
-    assert_redirected_to products_path
   end
 end
