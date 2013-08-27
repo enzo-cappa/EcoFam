@@ -10,10 +10,10 @@
 
 <script>
   $("#spend_needs_confirmation").click(function(){
-    $('.spend_spend_date').toggle(!this.checked);
+    $("#spend_spend_date_3i").toggle(!this.checked); 
   });
 
   $(".spend_spend_date").show(function(){
-    $(".spend_spend_date").toggle(!$("#spend_needs_confirmation").prop('checked'));
+    $("#spend_spend_date_3i").toggle(!$("#spend_needs_confirmation").prop('checked')); 
   });
 </script>

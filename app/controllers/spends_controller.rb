@@ -81,7 +81,7 @@ class SpendsController < ApplicationController
     tags = from_tags_listing(params[:spend].delete(:tags_listing))
     @spend = current_user.spends.find(params[:id])
     @spend.tags = tags
-    respond_to do |format|
+    respond_to do |format|      
       if @spend.update_attributes(spend_params)
         format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }        
         format.js

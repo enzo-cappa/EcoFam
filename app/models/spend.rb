@@ -6,6 +6,7 @@ class Spend < ActiveRecord::Base
   belongs_to :user, inverse_of: :spends
 
   before_save :clear_date_when_needs_confirmation
+  #before_update :clear_date_when_needs_confirmation
 
   validates :titulo, presence: true
   validates :amount, presence: true, numericality: true
@@ -30,17 +31,18 @@ class Spend < ActiveRecord::Base
   end
 
   def needs_confirmation
-    self.tags.where(name: "confirmar").length > 0
+    !self.tags.find {|tag| tag.name == "confirmar"}.nil?
   end
 
   def tags_not_confirm
     self.tags.where.not(name: "confirmar")
   end
+  
   private
   
   def clear_date_when_needs_confirmation
     if self.needs_confirmation
-      self.spend_date = self.spend_date.end_of_month
+      write_attribute :spend_date, (read_attribute :spend_date).end_of_month
     end
   end
 
