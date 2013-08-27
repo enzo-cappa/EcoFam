@@ -1,7 +1,8 @@
 class PurchaseLine < ActiveRecord::Base
-  belongs_to :product
-  belongs_to :purchase
-  belongs_to :brand
+  belongs_to :product, inverse_of: :purchase_lines
+  belongs_to :purchase, inverse_of: :purchase_lines
+  belongs_to :brand, inverse_of: :purchase_lines
+  
   validates :brand_id, presence: true
   before_validation :update_subtotal
 

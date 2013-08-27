@@ -1,8 +1,8 @@
 class Purchase < ActiveRecord::Base
   belongs_to :period
   belongs_to :market, inverse_of: :purchases
-  has_many :products, through: :purchase_line
-  has_many :purchase_lines, inverse_of: :purchase
+  has_many :purchase_lines, inverse_of: :purchase, dependent: :destroy
+  has_many :products, through: :purchase_lines
 
   accepts_nested_attributes_for :purchase_lines, allow_destroy: true
   validates :purchase_lines, length: {minimum: 1}

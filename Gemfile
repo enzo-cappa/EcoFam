@@ -37,4 +37,5 @@ gem 'rails_bootstrap_navbar'
 gem 'minitest'
 gem 'factory_girl_rails'
 gem 'kaminari'
-
+gem 'rails_admin'
+gem 'cancan'

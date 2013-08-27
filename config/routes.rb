@@ -1,4 +1,5 @@
 EcoFamily::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   devise_for :users
 
   get 'spends/balance/:year/:month' => 'spends#balance', :as => :balance
