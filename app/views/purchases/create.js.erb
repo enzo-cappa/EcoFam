@@ -1,7 +1,10 @@
 <% if @purchase.errors.any? %>
 $('#errors').html('<%= escape_javascript(render 'error', model: @purchase )%>')
 <% else %>
-  $('#crud_modal').modal('toggle');
+  $('#page-content').fadeOut(400, function() {
+    $('#page-content').html('<%= escape_javascript(render 'index' )%>');
+  });
+  $('#page-content').fadeIn(400);
   if (<%= @purchase.purchase_date.year %> === period.year && <%= @purchase.purchase_date.month %> === period.month ) {
     $('<%= escape_javascript(render(:partial => @purchase))%>').appendTo('#purchases');
     $("#purchases tbody tr").sort(spendsSorter).appendTo("#purchases");

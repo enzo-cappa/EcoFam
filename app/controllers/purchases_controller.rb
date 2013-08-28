@@ -7,8 +7,8 @@ class PurchasesController < ApplicationController
     @purchases = @period.purchases
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @purchases }
+      format.html
+      format.js
     end
   end
 
@@ -56,10 +56,8 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
-        format.js
+        format.js {redirect_to action: :index}
       else
-        format.html { render action: "new" }
         format.js
       end
     end

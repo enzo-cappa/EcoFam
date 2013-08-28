@@ -13,12 +13,8 @@
       <%= f.link_to_add "+", :purchase_lines, "data-target" => '#lines' , class: "btn btn-success" %>
       </div>
   </div>
-  <%= f.button :wrapped %>
+  <%= f.button :wrapped, data: {disable_with: "Guardando..."} %>
 <% end %>
-<script>
-  function getProducts() {
-    return <%= raw @products.to_json %>;
-  }
-</script>
+
 
 

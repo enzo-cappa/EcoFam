@@ -1,2 +1,5 @@
-$('#crud_modal').html('<%= escape_javascript(render 'new' )%>');
-$('#crud_modal').modal('toggle');
+$('#page-content').fadeOut(400, function() {
+  $('#page-content').html('<%= escape_javascript(render 'new' )%>');
+});
+$('#page-content').fadeIn(400);
+
