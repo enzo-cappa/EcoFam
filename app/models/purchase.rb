@@ -1,6 +1,8 @@
 class Purchase < ActiveRecord::Base
   belongs_to :period
   belongs_to :market, inverse_of: :purchases
+  belongs_to :user_group, inverse_of: :purchases
+  belongs_to :user, inverse_of: :purchases
   has_many :purchase_lines, inverse_of: :purchase, dependent: :destroy
   has_many :products, through: :purchase_lines
 
@@ -9,6 +11,8 @@ class Purchase < ActiveRecord::Base
   validates :total, numericality: true
   validates :market_id, presence: true
   validates :period_id, presence: true
+  validates :user_id, presence: true
+  validates :user_group_id, presence: true
   before_validation :update_total
 
   default_scope -> {order("#{Purchase.table_name}.purchase_date ASC, #{Purchase.table_name}.created_at ASC" )}

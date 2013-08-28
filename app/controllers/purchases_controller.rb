@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = @period.purchases
+    @purchases = current_user.user_group.purchases.where(period_id: @period.id)
 
     respond_to do |format|
       format.html
@@ -15,7 +15,7 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   # GET /purchases/1.json
   def show
-    @purchase = Purchase.find(params[:id])
+    @purchase = current_user.user_group.purchases.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +40,7 @@ class PurchasesController < ApplicationController
 
   # GET /purchases/1/edit
   def edit
-    @purchase = Purchase.joins(:market, purchase_lines: [:product, :brand]).find(params[:id])
+    @purchase = current_user.user_group.purchases.joins(:market, purchase_lines: [:product, :brand]).find(params[:id])
     @markets = Market.all.collect(&:name)
     @products = Product.all.collect(&:name)
     @brands = Brand.all.collect(&:name)
@@ -54,6 +54,8 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
   def create
     @purchase = Purchase.new(purchase_params)
+    @purchase.user = current_user
+    @purchase.user_group = current_user.user_group
     respond_to do |format|
       if @purchase.save
         format.js {redirect_to action: :index}
@@ -82,7 +84,7 @@ class PurchasesController < ApplicationController
   # DELETE /purchases/1
   # DELETE /purchases/1.json
   def destroy
-    @purchase = Purchase.find(params[:id])
+    @purchase = current_user.user_group.purchases.find(params[:id])
     @purchase.destroy
 
     respond_to do |format|
