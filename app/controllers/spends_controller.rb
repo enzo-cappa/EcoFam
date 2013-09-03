@@ -15,6 +15,7 @@ class SpendsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js
     end
   end
 
@@ -35,6 +36,7 @@ class SpendsController < ApplicationController
   def new
     @spend = Spend.new
     @tags = @spend.tags
+    @all_tags = Tag.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @spend }
@@ -46,10 +48,11 @@ class SpendsController < ApplicationController
   def edit
     @spend = Spend.find(params[:id])
     @tags = @spend.tags_not_confirm
+    @all_tags = Tag.all
     respond_to do |format|
       format.html
       format.xml  { render :xml => @spend }
-      format.js 
+      format.js { render :new}
     end
   end
 
@@ -66,7 +69,7 @@ class SpendsController < ApplicationController
       if @spend.save
         format.html { redirect_to spends_path, :flash => { :notice => t("msg.creation.success")} }
         format.xml  { render :xml => @spend, :status => :created, :location => @spend }
-        format.js
+        format.js  {redirect_to action: :index}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @spend.errors, :status => :unprocessable_entity }
@@ -84,7 +87,7 @@ class SpendsController < ApplicationController
     respond_to do |format|      
       if @spend.update_attributes(spend_params)
         format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }        
-        format.js
+        format.js  {redirect_to action: :index}
       else
         format.html { render :action => "edit" }
         format.js

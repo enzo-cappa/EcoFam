@@ -3,11 +3,10 @@
   <%= f.input :spend_date %>
   <%= f.input :titulo %>
   <%= f.input :amount %>
-  <%= f.input :tags_listing, input_html: { value: to_tags_listing(@tags) } %>
+  <%= f.input :tags_listing, input_html: { value: to_tags_listing(@tags), "data-provide" => "tag" } %>
   <%= f.button :wrapped, data: {disable_with: "Guardando..."} %>
 <% end %> 
 <div id="errors"></div>
-
 <script>
   $("#spend_needs_confirmation").click(function(){
     $("#spend_spend_date_3i").toggle(!this.checked); 
@@ -16,4 +15,5 @@
   $(".spend_spend_date").show(function(){
     $("#spend_spend_date_3i").toggle(!$("#spend_needs_confirmation").prop('checked')); 
   });
+  $("#spend_tags_listing").tag({source: <%= raw @all_tags.collect(&:name).to_json %>});
 </script>

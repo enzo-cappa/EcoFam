@@ -1,0 +1,6 @@
+<% model.errors.each do |field, error| %>
+  <% model_name = model.class.name.downcase %>
+  $('.control-group.<%= model_name %>_<%= field %>').addClass("error");
+  $('.control-group.<%= model_name %>_<%= field %>  .controls span').remove();
+  $('.control-group.<%= model_name %>_<%= field %>  .controls').append("<span class=\"help-inline\"> <%= error %> </span>");
+<% end %>

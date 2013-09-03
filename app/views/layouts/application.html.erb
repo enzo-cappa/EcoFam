@@ -15,10 +15,7 @@
     <% if user_signed_in? %>
       <%= nav_bar responsive: true do %>
         <%= menu_group do %>
-          <%= drop_down "Gastos" do %>
-            <%= menu_item "Lista", spends_path %>
-            <%= menu_item "Nuevo", new_spend_path %>
-          <% end %>
+          <%= menu_item "Gastos", spends_path, {}, {"data-remote" => true} %>
           <%= menu_item "Compras", purchases_path, {}, {"data-remote" => true} %>
           <%= menu_item "Productos", products_path %>
         <% end %>

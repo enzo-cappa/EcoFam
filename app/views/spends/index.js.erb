@@ -2,4 +2,4 @@ $('#page-content').fadeOut(400, function() {
   $('#page-content').html('<%= escape_javascript(render 'index' )%>');
 });
 $('#page-content').fadeIn(400);
-history.pushState({}, "", "<%= purchases_path %>");
+history.pushState({}, "", "<%= spends_path %>");
