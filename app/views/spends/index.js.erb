@@ -3,3 +3,5 @@ $('#page-content').fadeOut(400, function() {
 });
 $('#page-content').fadeIn(400);
 history.pushState({}, "", "<%= spends_path %>");
+
+updateNav('spends');
