@@ -56,6 +56,12 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     @purchase.user = current_user
     @purchase.user_group = current_user.user_group
+    
+    @purchase.purchase_lines.each do |line|
+      line.market = @purchase.market
+      line.date = @purchase.purchase_date
+    end
+    
     respond_to do |format|
       if @purchase.save
         format.js {redirect_to action: :index}

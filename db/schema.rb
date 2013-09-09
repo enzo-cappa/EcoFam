@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828144829) do
+ActiveRecord::Schema.define(version: 20130909182800) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -47,14 +47,7 @@ ActiveRecord::Schema.define(version: 20130828144829) do
 
   add_index "periods", ["year", "month"], name: "index_periods_on_year_and_month", unique: true
 
-  create_table "products", force: true do |t|
-    t.string   "name"
-    t.integer  "measure_unit_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "purchase_lines", force: true do |t|
+  create_table "price_lines", force: true do |t|
     t.integer  "product_id"
     t.integer  "purchase_id"
     t.decimal  "quantity"
@@ -63,6 +56,18 @@ ActiveRecord::Schema.define(version: 20130828144829) do
     t.integer  "brand_id"
     t.decimal  "price",       precision: 10, scale: 2, default: 0.0
     t.decimal  "subtotal",    precision: 10, scale: 2, default: 0.0
+    t.string   "type"
+    t.date     "date"
+    t.integer  "market_id"
+  end
+
+  add_index "price_lines", ["type"], name: "index_price_lines_on_type"
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.integer  "measure_unit_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "purchases", force: true do |t|

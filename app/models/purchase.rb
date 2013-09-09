@@ -19,6 +19,7 @@ class Purchase < ActiveRecord::Base
 
   def market_attributes=(market)
     self.market = Market.where(:name => market[:name]).first_or_create
+    self.purchase_lines.update_all market_id: self.market.id
   end
 
   def purchase_date=(date)
@@ -26,6 +27,7 @@ class Purchase < ActiveRecord::Base
     purchase_date = read_attribute :purchase_date
     period = Period.where(month: purchase_date.month, year: purchase_date.year).first
     self.period = period
+    self.purchase_lines.update_all date: read_attribute(:purchase_date)
   end
   
   private

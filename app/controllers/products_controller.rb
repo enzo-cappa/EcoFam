@@ -23,12 +23,12 @@ class ProductsController < ApplicationController
 
   def prices
     @data_by_market = {}
-    purchases = Purchase.joins(:purchase_lines).where("purchase_lines.product_id = ?", params[:id]).where(['purchase_date > ?', Time.now - 6.months]).uniq
-
-    for purchase in purchases
-      @data_by_market[purchase.market.name] = [] if @data_by_market[purchase.market.name].nil?
-      purchase_line = purchase.purchase_lines.where(product_id:  params[:id]).first
-      @data_by_market[purchase.market.name] << [purchase.purchase_date, purchase_line.price]
+    price_lines = PriceLine.where("price_lines.product_id = ?", params[:id]).where(['price_lines.date > ?', Time.now - 6.months])
+    
+    price_lines.each do |price|
+      market_name = price.market.name
+      @data_by_market[market_name] = [] if @data_by_market[market_name].nil?
+      @data_by_market[market_name] << [price.date, price.price]
     end
 
     respond_to do |format|

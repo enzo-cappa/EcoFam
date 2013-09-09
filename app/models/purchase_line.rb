@@ -1,33 +1,11 @@
-class PurchaseLine < ActiveRecord::Base
-  belongs_to :product, inverse_of: :purchase_lines
+class PurchaseLine < PriceLine
   belongs_to :purchase, inverse_of: :purchase_lines
-  belongs_to :brand, inverse_of: :purchase_lines
   
-  validates :brand_id, presence: true
   before_validation :update_subtotal
-
-  def product_with_default
-    product_without_default || Product.new
-  end
-
-  def brand_with_default
-    brand_without_default || Brand.new
-  end
-
-  alias_method_chain :product, :default
-  alias_method_chain :brand, :default
-  
-  def product_attributes=(product)
-    self.product = Product.where(:name => product[:name]).first_or_create
-  end
-
-  def brand_attributes=(brand)
-    self.brand = Brand.where(:name => brand[:name]).first_or_create
-  end
 
   def price=(price)
     write_attribute :price, price
-    update_subtotal    
+    update_subtotal
   end
 
   def quantity=(quantity)
