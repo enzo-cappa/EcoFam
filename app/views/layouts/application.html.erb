@@ -17,10 +17,10 @@
         <%= menu_group do %>
           <%= menu_item "Gastos", spends_path, {}, {"data-remote" => true, id: "spends-list-item"} %>
           <%= menu_item "Compras", purchases_path, {}, {"data-remote" => true, id: "purchases-list-item"} %>
-          <%= menu_item "Productos", products_path %>
+          <%= menu_item "Productos", products_path, {}, {"data-remote" => true, id: "products-list-item"} %>
         <% end %>
         <%= menu_group pull: :right do %>
-          <%= menu_item "Salir", destroy_user_session_path, method: :delete %>
+          <%= menu_item "Salir", destroy_user_session_path, {}, {"data-method" => :delete, rel: :nofollow} %>
         <% end %>
       <% end %>
     <% end %>

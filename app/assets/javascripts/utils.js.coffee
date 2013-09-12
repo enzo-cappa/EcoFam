@@ -8,3 +8,7 @@ window.spendsSorter = (rowA, rowB) ->
 window.updateNav = (entityName) -> 
   $('ul.nav li.active').removeClass('active')
   $('li:has(a#' + entityName + '-list-item)').addClass("active")
+
+closeAlerts = () ->
+  $(".alert").alert('close')
+window.setTimeout(closeAlerts, 4000)

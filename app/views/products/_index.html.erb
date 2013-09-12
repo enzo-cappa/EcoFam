@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Productos</h1>
+</div>
+<div class="modal hide crud-modal" id="modal"></div>
+<table class="table table-stiped table-condensed" id="products">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th/>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'product', collection: @products %>
+  </tbody>
+</table>
+
+<%= paginate @products %>
+
