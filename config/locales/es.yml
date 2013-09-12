@@ -222,6 +222,12 @@ es:
       purchase:
         market: "Mercado"
         purchase_date: "Fecha"
+      price_line:
+        date: "Fecha"
+        market: "Mercado"
+        brand: "Marca"
+        product: "Producto"
+        price: "Precio"
   msg:
     creation:
       success: Se creó la línea correctamente 

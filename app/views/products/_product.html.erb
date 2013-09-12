@@ -4,7 +4,8 @@
     <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Acci&oacute;n <span class="caret"></span> </a>
       <ul class="dropdown-menu">
-         <li><%= link_to 'Precios', product_prices_path(product), :remote => true %></li>
+         <li><%= link_to 'Precios', product_price_lines_path(product), remote: true %></li>
+         <li><%= link_to 'Nuevo precio', new_product_price_line_path(product), remote: true %></li>
       </ul>
     </div>
   </td>

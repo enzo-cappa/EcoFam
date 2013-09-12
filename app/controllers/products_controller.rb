@@ -21,21 +21,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  def prices
-    @data_by_market = {}
-    price_lines = PriceLine.where("price_lines.product_id = ?", params[:id]).where(['price_lines.date > ?', Time.now - 6.months])
-    
-    price_lines.each do |price|
-      market_name = price.market.name
-      @data_by_market[market_name] = [] if @data_by_market[market_name].nil?
-      @data_by_market[market_name] << [price.date, price.price]
-    end
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
   # GET /products/new
   # GET /products/new.json
   def new

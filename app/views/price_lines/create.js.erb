@@ -1,0 +1,6 @@
+<% if @price_line.errors.any? %>
+ <%= render "error_ajax_nested", model: @price_line %>
+<% else %>
+  $('#modal').modal('toggle');
+<% end %>
+

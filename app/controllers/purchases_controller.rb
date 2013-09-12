@@ -60,6 +60,8 @@ class PurchasesController < ApplicationController
     @purchase.purchase_lines.each do |line|
       line.market = @purchase.market
       line.date = @purchase.purchase_date
+      line.user = current_user
+      line.user_group = current_user.user_group
     end
     
     respond_to do |format|

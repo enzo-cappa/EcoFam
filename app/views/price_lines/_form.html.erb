@@ -1,0 +1,19 @@
+<%= simple_nested_form_for([@product, @price_line], remote: true) do |f| %>
+  <%= f.input :date %>
+  <%= f.simple_fields_for :market do |n| %>
+    <%= n.input(:name, label: PriceLine.human_attribute_name(:market), placeholder: PriceLine.human_attribute_name(:market), input_html: { "data-provide" => "typeahead", 'data-source' => @markets.to_json, autocomplete: "off"}) %>
+  <% end %>
+  <%= f.simple_fields_for :product do |product_form| %>
+    <%= product_form.input :name, as: :read_only, label: PriceLine.human_attribute_name(:product) %>
+  <% end %>
+
+  <%= f.simple_fields_for :brand do |brand_form| %>
+    <%= brand_form.input(:name, label: PriceLine.human_attribute_name(:brand), placeholder: PriceLine.human_attribute_name(:brand), input_html: {"data-provide" => "typeahead", "data-source" => @brands.to_json, autocomplete: "off"}) %>
+  <% end %>
+<%= f.input :price, as: :money %>
+
+  <%= f.button :wrapped, data: {disable_with: "Guardando..."} %>
+<% end %>
+
+
+

@@ -5,5 +5,7 @@ FactoryGirl.define do
     association :product
     association :brand
     association :market
+    association :user
+    association :user_group
   end
 end
