@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130909182800) do
+ActiveRecord::Schema.define(version: 20130910150911) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -51,14 +51,16 @@ ActiveRecord::Schema.define(version: 20130909182800) do
     t.integer  "product_id"
     t.integer  "purchase_id"
     t.decimal  "quantity"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.integer  "brand_id"
-    t.decimal  "price",       precision: 10, scale: 2, default: 0.0
-    t.decimal  "subtotal",    precision: 10, scale: 2, default: 0.0
+    t.decimal  "price",         precision: 10, scale: 2, default: 0.0
+    t.decimal  "subtotal",      precision: 10, scale: 2, default: 0.0
     t.string   "type"
     t.date     "date"
     t.integer  "market_id"
+    t.integer  "user_group_id"
+    t.integer  "user_id"
   end
 
   add_index "price_lines", ["type"], name: "index_price_lines_on_type"

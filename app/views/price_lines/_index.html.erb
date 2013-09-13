@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3>Precios por producto y marca</h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="span1"><h5><p class="text-right">Marca</p></h5></div>
+    <div class="span3">
+      <%= form_tag({controller: "price_lines", action: "index"}, method: "get", id: 'brand_form', remote: true) do %>
+        <%= hidden_field_tag(:product_id, @product.id) %>
+        <%= collection_select(:brand, :id, @brands, :id, :name) %>
+      <% end %>
+    </div>
+    <div class="span8"></div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <div id="chart"></div>
+    </div>
+  </div>
+</div>
+

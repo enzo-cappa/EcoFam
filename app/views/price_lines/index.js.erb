@@ -1,2 +1,8 @@
-$('#modal').html('<div id="chart"></div><script><%= escape_javascript( render 'chart' ) %></script>');
-$('#modal').modal('toggle');
+$('#modal').html('<%= escape_javascript(render 'index')%>');
+$('#modal').modal('show');
+
+<%= render 'chart' %>
+
+$("#brand_id").change(function()  {
+  $('#brand_form').submit();
+});
