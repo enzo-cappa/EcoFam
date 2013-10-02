@@ -58,8 +58,6 @@ class PurchasesController < ApplicationController
     @purchase.user_group = current_user.user_group
     
     @purchase.purchase_lines.each do |line|
-      line.market = @purchase.market
-      line.date = @purchase.purchase_date
       line.user = current_user
       line.user_group = current_user.user_group
     end
@@ -77,11 +75,11 @@ class PurchasesController < ApplicationController
   # PUT /purchases/1.json
   def update
     @purchase = Purchase.find(params[:id])
-
+    
     respond_to do |format|
       if @purchase.update_attributes(purchase_params)
         format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
-        format.js
+        format.js {redirect_to action: :index}
         else
         format.html { render action: "edit" }
         format.js
