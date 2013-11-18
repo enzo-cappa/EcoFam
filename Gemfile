@@ -12,6 +12,7 @@ gem 'uglifier'
 group :development do
   gem "rails-erd"
   gem "sqlite3"
+  gem 'debugger'
 end
 
 group :test do
