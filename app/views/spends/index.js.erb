@@ -1,7 +1,12 @@
 $('#page-content').fadeOut(400, function() {
   $('#page-content').html('<%= escape_javascript(render 'index' )%>');
 });
-$('#page-content').fadeIn(400);
+$('#page-content').fadeIn(400, function() {
+  $("html, body").animate({scrollTop: $(document).height()-$(window).height()});
+});
+
 history.pushState({}, "", "<%= spends_path %>");
 
 updateNav('spends');
+
+
