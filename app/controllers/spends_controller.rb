@@ -1,6 +1,6 @@
 class SpendsController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  before_filter :by_period, only: [:index, :balance]
+  before_filter :by_period, only: [:index, :balance, :edit, :update, :new, :create]
   # GET /spends
   # GET /spends.xml
   def index
@@ -86,7 +86,7 @@ class SpendsController < ApplicationController
     @spend.tags = tags
     respond_to do |format|      
       if @spend.update_attributes(spend_params)
-        format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")} }        
+        format.html { redirect_to spends_path, :flash => { :notice => t("msg.update.success")}, month: @period.month, year: @period.year }        
         format.js  {redirect_to action: :index}
       else
         format.html { render :action => "edit" }

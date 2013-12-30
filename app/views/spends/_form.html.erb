@@ -1,4 +1,6 @@
 <%= simple_form_for(@spend, remote: true) do |f| %>
+  <%= f.input :month, as: :fake_hidden , input_html: {value: @period.month} %>
+  <%= f.input :year, as: :fake_hidden, input_html:{ value: @period.year }%>
   <%= f.input :needs_confirmation, as: :boolean %>
   <%= f.input :spend_date %>
   <%= f.input :titulo %>
