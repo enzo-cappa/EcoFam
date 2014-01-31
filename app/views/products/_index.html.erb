@@ -2,6 +2,12 @@
   <h1>Productos</h1>
 </div>
 <div class="modal hide fade product-modal" id="modal"></div>
+
+<%= form_tag(products_path, method: 'get', html: {class: 'form-search'}) do %>
+  <%= text_field_tag :term, nil, class: "input-medium search-query" %>
+  <%= submit_tag "Buscar", class: "btn" %>
+<% end %>
+
 <table class="table table-stiped table-condensed" id="products">
   <thead>
     <tr>

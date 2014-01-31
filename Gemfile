@@ -40,3 +40,4 @@ gem 'factory_girl_rails'
 gem 'kaminari'
 gem 'rails_admin'
 gem 'cancan'
+gem "squeel"

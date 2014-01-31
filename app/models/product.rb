@@ -5,4 +5,6 @@ class Product < ActiveRecord::Base
   belongs_to :measure_unit
 
   validates :name, :presence => true, uniqueness: true
+
+  default_scope {order(:name)}
 end

@@ -2,7 +2,15 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.order(:name).page params[:page]
+    @products = nil    
+    if params[:term]
+      term = "%#{params[:term]}%"
+      @products = Product.where{(name =~ term)}
+    else
+      @products = Product.all
+    end
+    
+    @products = @products.page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -71,6 +79,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name)
+    params.permit(:name)
   end
 end
