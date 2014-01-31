@@ -1,4 +1,9 @@
 class SetDateAndMarketToPriceLine < ActiveRecord::Migration
+
+  class PurchaseLine < PriceLine
+    belongs_to :purchase, inverse_of: :purchase_lines
+  end
+  
   def change
     reversible do |dir|
       dir.up {
