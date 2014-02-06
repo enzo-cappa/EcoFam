@@ -1,5 +1,6 @@
 <tr id="<%= dom_id product %>">
   <td><%= product.name %></td>
+  <td><%= number_to_percentage(product.annual_price_rise, precision: 1) %></td>
   <td>
     <div class="btn-group">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Acci&oacute;n <span class="caret"></span> </a>
