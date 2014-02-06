@@ -5,7 +5,7 @@ GIT
     can_be_tagged (0.0.2)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://mirror1.ops.rhcloud.com/mirror/ruby/
   specs:
     actionmailer (4.0.1)
       actionpack (= 4.0.1)
