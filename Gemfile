@@ -12,7 +12,6 @@ gem 'uglifier'
 
 group :development do
   gem "rails-erd"
-  gem "sqlite3"
   gem 'debugger'
 end
 
@@ -20,6 +19,7 @@ group :test do
   gem "sqlite3"
 end
 
+gem "sqlite3"
 gem 'can_be_tagged', git: 'git://github.com/zherk/can_be_tagged.git'
 gem 'devise'
 gem 'jquery-rails'
