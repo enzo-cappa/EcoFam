@@ -1,9 +1,6 @@
-<div class="pagination pagination-centered">
-  <ul>
-    <li><%= link_to raw('&larr;'), history_url(model_name, :year=> @prev_period.year, :month => @prev_period.month, :with_tag => @tag), remote: true %></li>
-    <li class="disabled"><a href="#">&nbsp;</a></li>
-    <li><%= link_to "Nuevo", (send "new_#{model_name}_path"), class: "active", :remote => true, data: {disable_with: "Espere por favor..."} %></li>
-    <li class="disabled"><a href="#">&nbsp;</a></li>
-    <li><%= link_to raw('&rarr;'), history_url(model_name, :year=> @next_period.year, :month => @next_period.month, :with_tag => @tag), remote: true %></li>
-  </ul>
-</div>
+<ul class="pager">
+  <li><%= link_to raw('&larr;'), history_url(model_name, :year=> @prev_period.year, :month => @prev_period.month, :with_tag => @tag), remote: true %></li>
+  <li><%= link_to "Nuevo", (send "new_#{model_name}_path"), class: "active", :remote => true, data: {disable_with: "Espere por favor..."} %></li>
+  <li><%= link_to raw('&rarr;'), history_url(model_name, :year=> @next_period.year, :month => @next_period.month, :with_tag => @tag), remote: true %></li>
+</ul>
+

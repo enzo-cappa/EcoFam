@@ -1,6 +1,8 @@
+$('.form-group.has-error div span').remove();
+$('.form-group').removeClass("has-error has-feedback");
 <% model.errors.each do |field, error| %>
   <% model_name = model.class.name.downcase %>
-  $('.control-group.<%= model_name %>_<%= field %>').addClass("error");
-  $('.control-group.<%= model_name %>_<%= field %>  .controls span').remove();
-  $('.control-group.<%= model_name %>_<%= field %>  .controls').append("<span class=\"help-inline\"> <%= error %> </span>");
+  $('.form-group.<%= model_name %>_<%= field %>').addClass("has-error has-feedback");
+  $('.form-group.<%= model_name %>_<%= field %> div').append("<span class=\"glyphicon glyphicon-remove form-control-feedback\"></span>");
+  $('.form-group.<%= model_name %>_<%= field %> div').append("<span class=\"help-block\"> <%= error %> </span>");
 <% end %>

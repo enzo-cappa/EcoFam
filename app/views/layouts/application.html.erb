@@ -13,14 +13,14 @@
   </head>
   <body>
     <% if user_signed_in? %>
-      <%= nav_bar responsive: true do %>
-        <%= menu_group do %>
-          <%= menu_item "Gastos", spends_path, {}, {"data-remote" => true, id: "spends-list-item"} %>
-          <%= menu_item "Compras", purchases_path, {}, {"data-remote" => true, id: "purchases-list-item"} %>
-          <%= menu_item "Productos", products_path, {}, {"data-remote" => true, id: "products-list-item"} %>
+      <%= navbar do%>
+        <%= navbar_group do %>
+          <%= navbar_item "Gastos", spends_path, {}, {"data-remote" => true, id: "spends-list-item"} %>
+          <%= navbar_item "Compras", purchases_path, {}, {"data-remote" => true, id: "purchases-list-item"} %>
+          <%= navbar_item "Productos", products_path, {}, {"data-remote" => true, id: "products-list-item"} %>
         <% end %>
-        <%= menu_group pull: :right do %>
-          <%= menu_item "Salir", destroy_user_session_path, {}, {"data-method" => :delete, rel: :nofollow} %>
+        <%= navbar_group pull: :right do %>
+          <%= navbar_item "Salir", destroy_user_session_path, {}, {"data-method" => :delete, rel: :nofollow} %>
         <% end %>
       <% end %>
     <% end %>

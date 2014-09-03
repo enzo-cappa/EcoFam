@@ -1,19 +1,19 @@
-<%= simple_nested_form_for(@purchase, remote: true) do |f| %>
+<%= simple_nested_form_for(@purchase, html: { class: 'form-horizontal' }, remote: true) do |f| %>
   <div id="errors"></div>
   <%= f.input :purchase_date %>
-  <%= f.fields_for :market do |n| %>
-    <%= n.input(:name, placeholder: Purchase.human_attribute_name(:market), input_html: { "data-provide" => "typeahead", 'data-source' => @markets.to_json, autocomplete: "off"}, label: false) %>
+  <%= f.fields_for :market, wrapper: false do |n| %>
+    <%= n.input(:name, placeholder: Purchase.human_attribute_name(:market), input_html: { "data-provide" => "typeahead", 'data-source' => @markets.to_json, autocomplete: "off"}) %>
   <% end %>
   <legend><%= Product.model_name.human.pluralize %></legend>
   <div id="lines">
     <%= f.fields_for :purchase_lines %>
   </div>
   <div class="row">
-    <div class="span1 offset11">
+    <div class="col-md-1 col-md-offset-11">
       <%= f.link_to_add "+", :purchase_lines, "data-target" => '#lines' , class: "btn btn-success" %>
       </div>
   </div>
-  <%= f.button :wrapped, data: {disable_with: "Guardando..."} %>
+  <%= f.button :submit, data: {disable_with: "Guardando..."} %>
 <% end %>
 
 

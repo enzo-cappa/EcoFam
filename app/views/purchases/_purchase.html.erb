@@ -1,14 +1,14 @@
 <tr id="<%= dom_id purchase %>">
-	<td><%= l purchase.purchase_date, format: "%A %d" %></td>
-	<td><%= purchase.market.name %></td>
-	<td><%= number_to_currency(purchase.total, :unit => "$") %></td>
-	<td>
-	  <div class="btn-group">
-		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Acci&oacute;n <span class="caret"></span> </a>
-		  <ul class="dropdown-menu">
+  <td><%= l purchase.purchase_date, format: "%A %d" %></td>
+  <td><%= purchase.market.name %></td>
+  <td><%= number_to_currency(purchase.total, :unit => "$") %></td>
+  <td>
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> Acci&oacute;n <span class="caret"></span> </a>
+      <ul class="dropdown-menu">
         <li><%= link_to 'Editar', edit_purchase_path(purchase), :remote => true %></li>
-			  <li><%= link_to 'Eliminar', purchase, data: {confirm: '¿Está seguro?'}, :method => :delete, :remote => true %></li>
-		  </ul>
-	  </div>
+	<li><%= link_to 'Eliminar', purchase, data: {confirm: '¿Está seguro?'}, :method => :delete, :remote => true %></li>
+        </ul>
+    </div>
   </td>
 </tr>

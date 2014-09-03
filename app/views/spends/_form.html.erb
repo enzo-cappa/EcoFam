@@ -1,4 +1,4 @@
-<%= simple_form_for(@spend, remote: true) do |f| %>
+<%= simple_form_for(@spend, html: { class: 'form-horizontal' }, remote: true) do |f| %>
   <%= f.input :month, as: :fake_hidden , input_html: {value: @period.month} %>
   <%= f.input :year, as: :fake_hidden, input_html:{ value: @period.year }%>
   <%= f.input :needs_confirmation, as: :boolean %>
@@ -6,7 +6,7 @@
   <%= f.input :titulo %>
   <%= f.input :amount %>
   <%= f.input :tags_listing, input_html: { value: to_tags_listing(@tags), "data-provide" => "tag" } %>
-  <%= f.button :wrapped, data: {disable_with: "Guardando..."} %>
+  <%= f.button :submit, data: {disable_with: "Guardando..."} %>
 <% end %> 
 <div id="errors"></div>
 <script>
@@ -18,5 +18,11 @@
   $(".spend_spend_date").show(function(){
     $("#spend_spend_date_3i").toggle(!$("#spend_needs_confirmation").prop('checked')); 
   });
-  $("#spend_tags_listing").tag({source: <%= raw @all_tags.collect(&:name).to_json %>});
+  var values = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: $.map(<%= raw @all_tags.collect(&:name).to_json %>, function(tag) { return { value: tag }; })
+  });
+  values.initialize();
+  $("#spend_tags_listing").tag({source: values.ttAdapter()});
 </script>
