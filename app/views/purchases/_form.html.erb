@@ -2,7 +2,7 @@
   <div id="errors"></div>
   <%= f.input :purchase_date %>
   <%= f.fields_for :market, wrapper: false do |n| %>
-    <%= n.input(:name, placeholder: Purchase.human_attribute_name(:market), input_html: { "data-provide" => "typeahead", 'data-source' => @markets.to_json, autocomplete: "off"}) %>
+    <%= n.input(:name, placeholder: Purchase.human_attribute_name(:market), input_html: {autocomplete: "off"}) %>
   <% end %>
   <legend><%= Product.model_name.human.pluralize %></legend>
   <div id="lines">
@@ -16,5 +16,6 @@
   <%= f.button :submit, data: {disable_with: "Guardando..."} %>
 <% end %>
 
-
-
+<script>
+  <%= raw render "typeahead_input", values: @markets, dom_selector: "#purchase_market_attributes_name" %>
+</script>
