@@ -34,7 +34,13 @@ class SpendsController < ApplicationController
   # GET /spends/new
   # GET /spends/new.xml
   def new
+    if (@period == Period.current)
+      day = Date.today.day
+    else
+      day = 1
+    end
     @spend = Spend.new
+    @spend.spend_date = Date.new(@period.year, @period.month, day)
     @tags = @spend.tags
     @all_tags = Tag.all
     respond_to do |format|

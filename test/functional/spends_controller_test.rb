@@ -42,7 +42,7 @@ class SpendsControllerTest < ActionController::TestCase
 
   test "should update spend" do
     put :update, :id => @spend.to_param, :spend => @spend.attributes
-    assert_redirected_to spends_path
+    assert_redirected_to spends_path(month: @spend.period.month, year: @spend.period.year)
   end
 
   test "should destroy spend" do
