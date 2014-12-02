@@ -1,5 +1,6 @@
-PATH
-  remote: ~/can_be_tagged/
+GIT
+  remote: git://github.com/zherk/can_be_tagged.git
+  revision: d1428c661dd658c1d6dc02a9d374f58651e4ff9a
   specs:
     can_be_tagged (0.0.2)
 
