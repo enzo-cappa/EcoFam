@@ -17,8 +17,8 @@ group :test do
 end
 
 gem "sqlite3"
-#gem 'can_be_tagged', git: 'git://github.com/zherk/can_be_tagged.git'
-gem 'can_be_tagged', path: '~/can_be_tagged/'
+gem 'can_be_tagged', git: 'git://github.com/zherk/can_be_tagged.git'
+#gem 'can_be_tagged', path: '~/can_be_tagged/'
 
 gem 'devise'
 gem 'jquery-rails'
