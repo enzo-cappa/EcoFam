@@ -33,8 +33,9 @@ gem 'nested_form'
 #gem 'thor', '= 0.14.6'
 
 #bootstrap
-gem 'sass-rails'
-gem 'bootstrap-sass', "~> 3.2.0.1"
+gem 'autoprefixer-rails'
+gem 'sass-rails', '>= 3.2'
+gem 'bootstrap-sass', "~> 3.3.1"
 gem 'rails_bootstrap_navbar'
 gem 'autoprefixer-rails'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
