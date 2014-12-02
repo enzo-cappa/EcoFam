@@ -98,7 +98,7 @@ class Tag
       'class' : "tag"
     })
     .text(value.toString())
-    .append($('<button type="button" class="close">&times;</button>')
+    .append($('<button type="button" class="close glyphicon glyphicon-remove"></button>')
       .on('click', () ->
         that.remove(that.element.siblings('.tag').index($(this).closest('.tag')))
       )

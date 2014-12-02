@@ -1,6 +1,9 @@
 .tags {
-    display: inline-block;
-    padding: 4px 6px;
+    display: block;
+    padding-top: $padding-base-vertical;
+    padding-left: $padding-base-horizontal;
+    padding-right: $padding-base-horizontal + $font-size-small;
+    padding-bottom: 0px;
     margin-bottom: $line-height-base / 2;
     color: $gray;
     vertical-align: middle;
@@ -12,7 +15,6 @@
     border: 1px solid $input-border;
     @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
     @include transition(border linear .2s, box-shadow linear .2s);
-    width: 206px;
   
     &:hover {
         border-color: rgba(82,168,236,.8);
@@ -41,24 +43,26 @@
 }
 
 .tag {
+    position: relative;
     display: inline-block;
-    padding: 2px 4px;
+    padding: $padding-base-vertical $padding-base-horizontal;
+    padding-right: $padding-base-horizontal + $font-size-small;
     font-size: $font-size-base * .846;
     font-weight: bold;
-    line-height: 14px; // ensure proper line-height if floated
+    line-height: $line-height-small; // ensure proper line-height if floated
     color: #fff;
     vertical-align: baseline;
     white-space: nowrap;
     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
     background-color: $gray-light;
-    padding-left: 9px;
-    padding-right: 9px;
+   // padding-left: $padding-base-horizontal;
+    //padding-right: $padding-base-horizontal;
     @include border-top-radius($border-radius-base);
     @include border-right-radius($border-radius-base);
     @include border-bottom-radius($border-radius-base);
     @include border-left-radius($border-radius-base) ;
-    margin-bottom: 5px;
-    margin-right: 5px;
+    margin-bottom: $padding-base-vertical;
+    margin-right: $padding-base-horizontal;
     @include transition(all 0.2s);
     
     &:empty {
@@ -77,9 +81,12 @@
     &:inverse     { background-color: darken($gray-dark, 10%); }
     
     .close {
-        font-size: $font-size-base;
-        line-height: 14px;
+        float: none;
+        font-size: $font-size-small;
         margin-left: 7px;
+        position: absolute;
+        right: 4px;
+        top: 4px;
     }
 }
 

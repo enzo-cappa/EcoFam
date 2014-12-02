@@ -10,9 +10,9 @@
   </div>
   <div class="col-md-3">
     <%= f.simple_fields_for :brand do |brand_form| %>
-      <%= brand_form.text_field :name, placeholder: "Marca",  "data-provide" => "typeahead", "data-source" => @brands.to_json, autocomplete: "off", class: "form-control" %>
+      <%= brand_form.text_field :name, placeholder: "Marca", autocomplete: "off",  class: "form-control brand-autocomplete" %>
     <% end %>
-  </div>  
+  </div>
   <div class="col-md-2">
     <%= f.text_field :price, placeholder: "Precio", autocomplete: "off", class: "form-control" %>
   </div>
@@ -22,4 +22,5 @@
 </div>
 <script>
   <%= raw render "typeahead_input", values: @products, dom_selector: '.product-autocomplete' %>
+  <%= raw render "typeahead_input", values: @brands, dom_selector: '.brand-autocomplete' %>
 </script>
