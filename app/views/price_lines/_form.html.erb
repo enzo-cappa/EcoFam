@@ -1,16 +1,16 @@
 <%= simple_nested_form_for([@product, @price_line], html: {class: 'form-horizontal'}, remote: true) do |f| %>
   <%= f.input :date %>
-  <%= f.simple_fields_for :market do |n| %>
+  <%= f.simple_fields_for :market, wrapper: false do |n| %>
     <%= n.input(:name, label: PriceLine.human_attribute_name(:market), placeholder: PriceLine.human_attribute_name(:market), input_html: {autocomplete: "off"}) %>
   <% end %>
-  <%= f.simple_fields_for :product do |product_form| %>
+  <%= f.simple_fields_for :product, wrapper: false do |product_form| %>
     <%= product_form.input :name, as: :read_only, label: PriceLine.human_attribute_name(:product) %>
   <% end %>
 
-  <%= f.simple_fields_for :brand do |brand_form| %>
+  <%= f.simple_fields_for :brand, wrapper: false do |brand_form| %>
     <%= brand_form.input(:name, label: PriceLine.human_attribute_name(:brand), placeholder: PriceLine.human_attribute_name(:brand), input_html: {autocomplete: "off"}) %>
   <% end %>
-  <%= f.input :price, as: :money, input_html: {class: 'form-control'} %>
+  <%= f.input :price, as: :money, wrapper: :horizontal_currency %>
 
   <%= f.button :submit, data: {disable_with: "Guardando..."} %>
 <% end %>

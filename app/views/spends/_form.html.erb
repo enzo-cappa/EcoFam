@@ -4,7 +4,7 @@
   <%= f.input :needs_confirmation, as: :boolean %>
   <%= f.input :spend_date %>
   <%= f.input :titulo %>
-  <%= f.input :amount %>
+  <%= f.input :amount, as: :money, wrapper: :horizontal_currency%>
   <%= f.input :tags_listing, input_html: { value: to_tags_listing(@tags), "data-provide" => "tag" } %>
   <%= f.button :submit, data: {disable_with: "Guardando..."} %>
 <% end %> 

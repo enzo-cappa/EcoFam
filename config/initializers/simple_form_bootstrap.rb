@@ -94,6 +94,22 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :horizontal_currency, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: 'col-sm-3 control-label'
+    b.wrapper tag: 'div', class: 'col-sm-9 controls' do |ba|
+      ba.wrapper tag: 'div', class: 'input-group' do |bb|
+        bb.use :input, class: 'form-control'
+        bb.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+        bb.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+      end
+    end
+  end
+
   config.wrappers :horizontal_radio_and_checkboxes, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.optional :readonly
