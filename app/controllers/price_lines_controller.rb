@@ -28,7 +28,7 @@ class PriceLinesController < ApplicationController
 
   def index
     @product = Product.find(params[:product_id])
-    @brands = Brand.joins(:price_lines).where("price_lines.product_id = ?", @product.id).where(['price_lines.date > ?', Time.now - 6.months]).uniq
+    @brands = Brand.joins(:price_lines).where("price_lines.product_id = ?", @product.id).where(['price_lines.date > ?', Time.now - 1.year]).uniq
     
     if (params[:brand])
       @brand = Brand.find(params[:brand][:id])
