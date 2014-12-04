@@ -1,26 +1,22 @@
 <div class="row product-line">
   <%= f.hidden_field :id %>
   <div class="col-md-2">
-    <%= f.text_field :quantity, placeholder: "Cantidad",  autocomplete: "off", class: "form-control" %>
+    <%= f.input :quantity, wrapper: :horizontal_purchase_line, placeholder: "Cantidad",  autocomplete: "off" %>
   </div>
   <div class="col-md-4">
-    <%= f.simple_fields_for :product do |product_form| %>
-      <%= product_form.text_field :name, placeholder: "Producto", autocomplete: "off",  class: "form-control product-autocomplete" %>
+    <%= f.simple_fields_for :product, wrapper: false do |product_form| %>
+      <%= product_form.input :name, wrapper: :horizontal_purchase_line, placeholder: "Producto", autocomplete: "off",  input_html: {"data-provide" => "product-typeahead" } %>
     <% end %>
   </div>
   <div class="col-md-3">
-    <%= f.simple_fields_for :brand do |brand_form| %>
-      <%= brand_form.text_field :name, placeholder: "Marca", autocomplete: "off",  class: "form-control brand-autocomplete" %>
+    <%= f.simple_fields_for :brand, wrapper: false do |brand_form| %>
+    <%= brand_form.input :name, wrapper: :horizontal_purchase_line, placeholder: "Marca", autocomplete: "off",  input_html: {"data-provide" => "brand-typeahead" } %>
     <% end %>
   </div>
   <div class="col-md-2">
-    <%= f.text_field :price, placeholder: "Precio", autocomplete: "off", class: "form-control" %>
+    <%= f.input :price, wrapper: :horizontal_purchase_line, placeholder: "Precio", autocomplete: "off", class: "form-control" %>
   </div>
   <div class="col-md-1">
     <%= f.link_to_remove "-", class: "btn btn-danger"  %>
   </div>
 </div>
-<script>
-  <%= raw render "typeahead_input", values: @products, dom_selector: '.product-autocomplete' %>
-  <%= raw render "typeahead_input", values: @brands, dom_selector: '.brand-autocomplete' %>
-</script>
