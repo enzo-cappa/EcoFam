@@ -31,13 +31,13 @@ brandDataSet =
   displayKey: 'value',
   source: brandsSource.ttAdapter()
 
-$('input[data-provide=brand-typeahead]').typeahead(opts, productDataSet)
+$('input[data-provide=product-typeahead]').typeahead(opts, productDataSet)
 $(document).on('nested:fieldAdded', (event) ->
   field = event.field
   productField = field.find("input[id$='product_attributes_name']")
   productField.typeahead(opts, productDataSet))
 
-$('input[data-provide=product-typeahead]').typeahead(opts, brandDataSet)
+$('input[data-provide=brand-typeahead]').typeahead(opts, brandDataSet)
 $(document).on('nested:fieldAdded', (event) ->
   field = event.field
   brandField = field.find("input[id$='brand_attributes_name']")
