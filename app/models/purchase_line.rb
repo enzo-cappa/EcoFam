@@ -16,7 +16,9 @@ class PurchaseLine < PriceLine
   
   private
   def update_subtotal
-    write_attribute :subtotal, read_attribute(:price) * read_attribute(:quantity)
+    if read_attribute(:price).is_a? Numeric and read_attribute(:quantity).is_a? Numeric
+      write_attribute :subtotal, read_attribute(:price) * read_attribute(:quantity)
+    end
   end
 
   def update_common_attributes

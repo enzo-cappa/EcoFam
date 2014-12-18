@@ -2,7 +2,7 @@ $('.form-group.has-error div span').remove();
 $('.form-group').removeClass("has-error has-feedback");
 <% model.errors.each do |field, error| %>
   <% model_name = model.class.name.downcase %>
-  $('.form-group.<%= model_name %>_<%= field %>').addClass("has-error has-feedback");
-  $('.form-group.<%= model_name %>_<%= field %> div').append("<span class=\"glyphicon glyphicon-remove form-control-feedback\"></span>");
-  $('.form-group.<%= model_name %>_<%= field %> div').append("<span class=\"help-block\"> <%= error %> </span>");
+  $('div.form-group.<%= model_name %>_<%= field %>').addClass("has-error has-feedback")
+  $('div.form-group.<%= model_name %>_<%= field %> div[class^="col"]').append("<span class=\"glyphicon glyphicon-remove form-control-feedback\"></span>")
+      .append("<span class=\"help-block\"> <%= error %> </span>");
 <% end %>
